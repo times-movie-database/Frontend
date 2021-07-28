@@ -1,6 +1,7 @@
 # The end user side UI with React
 
-This is for user side user interface for now, will be extended further if needed.\ This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is for user side user interface for now, will be extended further if needed.\
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

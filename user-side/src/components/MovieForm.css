@@ -33,9 +33,8 @@ input[type=text],textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 15px 0px;
-    box-sizing: border-box;
-    border:none;
+    box-sizing: border-box; 
     resize: none;
-    border-bottom: 2px solid #023C40;
+    border: 1px solid #023C40;
   }
   

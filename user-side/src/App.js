@@ -14,11 +14,11 @@ function App() {
           <Route exact path="/movie/id/edit">
           </Route>
           <Route exact path="/movie/add">
+            <MovieForm />
           </Route>
           <Route path="/">
           </Route>
         </Switch>
-        <MovieForm />
       </div>
     </Router>
   );

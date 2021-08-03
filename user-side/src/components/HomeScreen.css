@@ -1,0 +1,16 @@
+.center{
+       
+    margin-top: 5em;
+    margin-left: 40em;
+}
+.fn{
+    font-style: normal;
+    font-weight: bold;
+}
+.grid-container{
+    margin-top: 6em;
+    display: grid;
+    grid-row-gap: 3em;
+    grid-column-gap: 1em;
+    grid-template-columns: auto auto;
+}

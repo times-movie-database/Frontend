@@ -1,0 +1,33 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+.card {
+
+    box-shadow:0 2px 20px gray;
+    transition: 0.3s;
+    height: 12.5em;
+    border-radius: 1em;
+    width: 12.5em;
+    background-color: transparent;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    background-color:rgba(204,255,229,0.6);
+    cursor: pointer;
+  }
+  .checked {
+    color: orange;
+  }
+  .sno{
+      color: gray;
+      font-size: small;
+      text-align: left;
+      margin-left: 20px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  
+  .container {
+    padding: 2px 16px;
+  }

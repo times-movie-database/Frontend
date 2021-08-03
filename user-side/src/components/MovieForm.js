@@ -35,11 +35,7 @@ export default function MovieForm() {
             <form>
                 <ul className='container'>
                     <li>
-<<<<<<< HEAD
-                        <input type='text' placeholder='Movie Title' maxLength='5'></input><br />
-=======
-                        <input name='title' type='text' placeholder='Movie Title' value={movie.title} onChange={handleFeildChange} isRequired></input><br />
->>>>>>> bb0658ad0e57dcd355badbb06ca285fb2d888919
+                        <input type='text' placeholder='Movie Title' maxLength='50'></input><br />
                     </li>
                     <li>
                         <textarea name='summary' rows='15' cols='20' placeholder='Summary' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />

@@ -35,6 +35,6 @@ input[type=text],textarea {
     margin: 15px 0px;
     box-sizing: border-box; 
     resize: none;
-    border: 1px solid #023C40;
-  }
+    border: 2px solid #023C40;
+}
   

@@ -10,7 +10,7 @@ export default function MovieForm() {
             <form>
                 <ul className='container'>
                     <li>
-                        <input type='text' placeholder='Movie Title'></input><br />
+                        <input type='text' placeholder='Movie Title' maxLength='5'></input><br />
                     </li>
                     <li>
                         <textarea rows='15' cols='20' placeholder='Summary' className='form-control'></textarea><br />

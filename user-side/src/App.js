@@ -1,4 +1,5 @@
 import MovieForm from './components/MovieForm';
+import HomeScreen from './components/HomeScreen'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -17,6 +18,7 @@ function App() {
             <MovieForm />
           </Route>
           <Route path="/">
+            <HomeScreen/>
           </Route>
         </Switch>
       </div>

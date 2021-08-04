@@ -1,16 +1,16 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.container1 {
+.header .container1 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
 }
-img {
+.header img {
   width: 10%;
   height: 10%;
 }
-.container2 {
+.header .container2 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -22,17 +22,17 @@ img {
   margin: auto;
   border-radius: 0.5em;
 }
-input[type="text"] {
+.header input[type="text"] {
   width: 85%;
   border-right: 1px solid transparent;
   background-color: transparent;
   border: 1px solid transparent;
   text-align: center;
 }
-.opt {
+.header .opt {
   background-color: palegoldenrod;
 }
-.slt {
+.header .slt {
   width: 10%;
   border: 1px solid transparent;
   border-left: 1px solid black;
@@ -40,7 +40,7 @@ input[type="text"] {
   background-color: transparent;
   text-align: center;
 }
-.add-movie {
+.header .add-movie {
   width: 10%;
   font-size: 0.75em;
   padding: 0.5em 0.5em;
@@ -51,7 +51,7 @@ input[type="text"] {
   margin: auto;
   background-color: orange;
 }
-.btn {
+.header .btn {
   width: 5%;
   border: 1px solid transparent;
   justify-content: space-around;

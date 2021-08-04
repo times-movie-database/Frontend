@@ -1,4 +1,4 @@
-.container{
+.movie-form .container{
     /* display: flex;
     flex-direction: column; */
     /* border: 2px solid; */
@@ -9,17 +9,17 @@
 }
 
 
-.container li{
+.movie-form .container li{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.container>li>*{
+.movie-form .container>li>*{
     flex: 1 0 220px;
 }
 
-.container li button{
+.movie-form .container li button{
     margin: 15px 0px;
     padding: 8px 16px;
     border:none;
@@ -29,7 +29,7 @@
     letter-spacing: .09em;
     border-radius: 2px;
 }
-input[type=text],textarea {
+.movie-form input[type=text],textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 15px 0px;

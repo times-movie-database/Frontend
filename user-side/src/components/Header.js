@@ -2,7 +2,7 @@ import './Header.css';
 import logo from './images/placeholder.png';
 export default function Header(props) {
     return (
-        <div className="background">
+        <div className="header background">
  
             <div className="container1">
                 <img src={logo} alt="Logo" />

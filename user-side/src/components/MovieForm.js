@@ -31,7 +31,7 @@ export default function MovieForm() {
         alert("sent");
     }
     return (
-        <div>
+        <div className='movie-form'>
             <form>
                 <ul className='container'>
                     <li>

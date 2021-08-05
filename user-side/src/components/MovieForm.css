@@ -28,6 +28,7 @@
     text-transform: uppercase;
     letter-spacing: .09em;
     border-radius: 2px;
+    cursor:pointer;
 }
 .movie-form input[type=text],textarea {
     width: 100%;

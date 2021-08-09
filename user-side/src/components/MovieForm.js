@@ -156,7 +156,12 @@ export default function MovieForm() {
 
                     <div className='form-group'>
                         <span className="required">*</span>
-                        <Select name='genres' id='genres' isMulti getOptionLabel={option => option.name} getOptionValue={option => option.id} options={genreList} onChange={handleDropdownChange} /><br />
+                        <Select name='genres' id='genres' isMulti 
+                        placeholder='Choose Genres'
+                        getOptionLabel={option => option.name} 
+                        getOptionValue={option => option.id}
+                        options={genreList} 
+                        onChange={handleDropdownChange} /><br />
                     </div>
                     <div className='btn-center'>
                         <button type='submit' onClick={handleSubmit} className='btn'>Submit</button>

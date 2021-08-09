@@ -9,6 +9,7 @@
     max-width: 500px;
     padding: 20px;
     background-color: rgba(204, 255, 229, 0.6);
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
 .movie-form .form-wrap{
@@ -29,11 +30,18 @@ margin-top: 15px;
     border: #ddd 1px solid;
     border-radius: 5px;
     resize: none;
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    color:#aaa;
 }
 .movie-form .form-wrap .form-group input:focus,
 .movie-form .form-wrap .form-group textarea:focus{
-    outline: 2px blue;
-    border-color: blue;
+    outline: 0px ;
+    border: 2px rgb(3, 102, 214) solid ;
 }
 
 .movie-form .required{
@@ -60,7 +68,7 @@ margin-top: 15px;
 }
 
 .movie-form .form-wrap .btn:hover{    
-    background: #FEE500; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }   
 .movie-form .form-wrap .bottom-text{
     font-size: 13px;

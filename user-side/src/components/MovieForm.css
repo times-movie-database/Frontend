@@ -1,25 +1,53 @@
-.movie-form .container{
-    /* display: flex;
-    flex-direction: column; */
-    /* border: 2px solid; */
-    display: block-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 40px;
+.movie-form {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
 
-
-.movie-form .container li{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+#container{
+    margin: 30px auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(204, 255, 229, 0.6);
 }
 
-.movie-form .container>li>*{
-    flex: 1 0 220px;
+.movie-form .form-wrap{
+    padding:15px 25px;
+    color:#333;
+}
+.movie-form .form-wrap h1,
+.movie-form .form-wrap p{
+    text-align: center;
+}
+.movie-form .form-wrap .form-group{
+margin-top: 15px;
+}
+.movie-form .form-wrap .form-group input,
+.movie-form .form-wrap .form-group textarea{
+    width:94%;
+    padding: 10px;
+    border: #ddd 1px solid;
+    border-radius: 5px;
+    resize: none;
+}
+.movie-form .form-wrap .form-group input:focus,
+.movie-form .form-wrap .form-group textarea:focus{
+    outline: 2px blue;
+    border-color: blue;
 }
 
-.movie-form .container li button{
+.movie-form .required{
+
+}
+.movie-form .required{
+    color: red;
+    font-size: 20px;
+}
+.movie-form .form-wrap .btn-center{
+   
+}
+.movie-form .form-wrap .btn{    
+    width: 100%;
     margin: 15px 0px;
     padding: 8px 16px;
     border:none;
@@ -30,12 +58,10 @@
     border-radius: 2px;
     cursor:pointer;
 }
-.movie-form input[type=text],textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 15px 0px;
-    box-sizing: border-box; 
-    resize: none;
-    border: 2px solid #023C40;
+
+.movie-form .form-wrap .btn:hover{    
+    background: #FEE500; 
+}   
+.movie-form .form-wrap .bottom-text{
+    font-size: 13px;
 }
-  

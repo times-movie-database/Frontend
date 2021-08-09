@@ -115,8 +115,8 @@ export default function MovieForm() {
     const createCastList = () => {
         setMovie(
             () => {
-                return{
-                    cast : castNameCSV.split(',')
+                return {
+                    cast: castNameCSV.split(',')
                 };
             }
         )
@@ -136,26 +136,38 @@ export default function MovieForm() {
     }
 
     return (
-        <div className='movie-form'>
-            <form>
-                <ul className='container'>
-                    <li>
-                        <input name='title' type='text' placeholder='Movie Title' value={movie.title} onChange={handleFeildChange}></input><br />
-                    </li>
-                    <li>
-                        <textarea name='summary' rows='15' cols='20' placeholder='Summary' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
-                    </li>
-                    <li>
-                        <input name='cast' type='text' placeholder='Cast' value={castNameCSV} onChange={handleFeildChange}></input><br />
-                    </li>
-                    <li>
-                        <Select name='genres' isMulti getOptionLabel={option => option.name} getOptionValue={option => option.id} options={genreList} onChange={handleDropdownChange} /><br />
-                    </li>
-                    <li>
-                        <button type='submit' onClick={handleSubmit}>Submit</button>
-                    </li>
-                </ul>
-            </form>
+        <div className='movie-form' id='container'>
+            <div className='form-wrap'>
+                <h1>Add a Movie</h1>
+                <form>
+
+                    <div className='form-group'>
+                        <span className="required">*</span>
+                        <input name='title' id='title' type='text' placeholder='Movie Title' value={movie.title} onChange={handleFeildChange}></input><br />
+                    </div>
+
+                    <div className='form-group'>
+                        <textarea name='summary' id='summary' rows='15' cols='20' placeholder='Summary' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
+                    </div>
+
+                    <div className='form-group'>
+                        <input name='cast' id='cast' type='text' placeholder='Cast' value={castNameCSV} onChange={handleFeildChange}></input><br />
+                    </div>
+
+                    <div className='form-group'>
+                        <span className="required">*</span>
+                        <Select name='genres' id='genres' isMulti getOptionLabel={option => option.name} getOptionValue={option => option.id} options={genreList} onChange={handleDropdownChange} /><br />
+                    </div>
+                    <div className='btn-center'>
+                        <button type='submit' onClick={handleSubmit} className='btn'>Submit</button>
+                    </div>
+
+                    <p className="bottom-text">
+                        <strong>Note: </strong> <span className="required">*</span> marked feilds are required
+                    </p>
+                </form>
+
+            </div>
         </div>
     );
 }

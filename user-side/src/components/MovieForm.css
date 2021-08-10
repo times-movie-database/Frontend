@@ -26,27 +26,30 @@ margin-top: 15px;
 .movie-form .form-wrap .form-group input,
 .movie-form .form-wrap .form-group textarea{
     width:94%;
-    padding: 10px;
+    padding: 12px;
     border: #ddd 1px solid;
     border-radius: 5px;
     resize: none;
-    font-size: 16px;
+    font-size: 14px;
     font-family: Arial;
     font-weight: 400;
     font-style: normal;
     letter-spacing: normal;
     text-transform: none;
-    color:#aaa;
 }
+
 .movie-form .form-wrap .form-group input:focus,
 .movie-form .form-wrap .form-group textarea:focus{
     outline: 0px ;
     border: 2px rgb(3, 102, 214) solid ;
 }
 
-.movie-form .required{
-
+.movie-form .form-wrap .form-group input::placeholder,
+.movie-form .form-wrap .form-group textarea::placeholder{
+    color:#888;
+    font-size: 15px;
 }
+
 .movie-form .required{
     color: red;
     font-size: 20px;
@@ -69,7 +72,36 @@ margin-top: 15px;
 
 .movie-form .form-wrap .btn:hover{    
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}  
+.movie-form .form-wrap .btn:active{    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 0px;
 }   
 .movie-form .form-wrap .bottom-text{
+    margin-top: 0px;
     font-size: 13px;
+}
+
+.movie-form .form-wrap .shake-text{
+    animation:  shake 0.8s  ;
+}
+@keyframes shake{
+    0%{
+      transform: translateX(0)
+    }
+    25%{
+      transform: translateX(25px);
+    }
+      
+    50%{
+      transform: translateX(-25px);
+    }
+    100%{
+      transform: translateX(0px);
+    }
+  }
+
+.movie-form .warning{
+
+    font-size: 12px;
+    color: red;
 }

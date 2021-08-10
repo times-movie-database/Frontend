@@ -37,6 +37,12 @@ export default function MovieForm() {
         blankName: true
     });
 
+    const [genreError, setGenreError] = useState({
+        fieldEmpty: true
+    });
+
+    const [inValidName, setInValidName] = useState(false);
+    const [feildRequired, setFeildRequired] = useState(false);
     /*genres*/
     const genreList = [
         { id: 1, name: 'Drama' },
@@ -45,25 +51,33 @@ export default function MovieForm() {
     ]
 
     const validateTitle = (title, value) => {
+        /*To check if max allowed lenght reached*/
         if (value.length <= TITLE_MAX) {
             setMovie({ ...movie, [title]: value });
             setTitleError({ ...titleError, limitExceeds: false });
         }
-
         else {
             setTitleError({ ...titleError, limitExceeds: true });
         }
+        /*If the feild is empty*/
+        if(value.length===0){
+            setTitleError({...titleError,fieldEmpty : true});
+        }
+        else{
+            setTitleError({...titleError,fieldEmpty : false})
+        }
+
 
     }
 
     const validateSummary = (summary, value) => {
         if (value.length <= SUMMARY_MAX) {
             setMovie({ ...movie, [summary]: value });
-            setTitleError({ ...summaryError, limitExceeds: false });
+            setSummaryError({ ...summaryError, limitExceeds: false });
         }
 
         else {
-            setTitleError({ ...summaryError, limitExceeds: true });
+            setSummaryError({ ...summaryError, limitExceeds: true });
         }
 
     }
@@ -73,15 +87,31 @@ export default function MovieForm() {
         return input.substring(n + 1);
     }
 
+    const isValidCharacter = (character) => {
+        const regex = /^[,a-zA-Z ]/;
+        return regex.test(character);
+    }
+
     const validateCastName = (csv) => {
         const lastChar = csv.charAt(csv.length - 1);
         const newCast = parseLastNameInCSV(csv);
 
+        /*Check whether last character inputed is valid or not  */
+        if (lastChar !== '' &&
+            !isValidCharacter(lastChar)) {
+            setInValidName(true);
+        }
+        else {
+            setInValidName(false);
+        }
+
         if (newCast.length > CAST_NAME_MAX) {
             setCastError({ ...castError, limitExceeds: true });
         }
-        else if (lastChar !== ',') {
+        else if (lastChar !== ',' &&
+            (isValidCharacter(lastChar) || lastChar === '')) {
             setCastNameCSV(csv);
+            setCastError({ ...castError, limitExceeds: false });
         }
 
         if (lastChar === ',') {
@@ -89,7 +119,7 @@ export default function MovieForm() {
                 setCastNameCSV(csv);
             }
             else {
-                console.log("cast name can't be blank");
+                console.log("cast name shouldn't be blank");
                 setCastError({ ...castError, blankName: true });
             }
         }
@@ -107,11 +137,17 @@ export default function MovieForm() {
             default: console.log("Default Case");
         }
     }
-
+    
     const handleDropdownChange = (e) => {
         setMovie({ ...movie, genres: e });
+        if(e.length>0){
+            setGenreError({...genreError, fieldEmpty : false});
+        }
+        else{
+            setGenreError({...genreError, fieldEmpty : true});
+        }
     }
-
+   
     const createCastList = () => {
         setMovie(
             () => {
@@ -122,16 +158,25 @@ export default function MovieForm() {
         )
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         createCastList();
-        sendMovieToDB(
-            movie,
-            () => (alert("Success")),
-            (error) => {
-                alert(`Error ${error}`);
-            }
-        );
+        e.preventDefault();
+        if ( titleError.fieldEmpty || genreError.fieldEmpty ) {
+            setFeildRequired(true);
+        }
+        else {
+            setFeildRequired(false);
+            sendMovieToDB(
+                movie,
+                () => {alert("Success");
+                setMovie({...movie,initialMovieState}); },
+                (error) => {
+                    alert(`Error ${error}`);
+                }
+            );
+        }
         console.log(movie.cast);
+        console.log(movie);
 
     }
 
@@ -145,29 +190,36 @@ export default function MovieForm() {
                         <span className="required">*</span>
                         <input name='title' id='title' type='text' placeholder='Movie Title' value={movie.title} onChange={handleFeildChange}></input><br />
                     </div>
+                    {titleError.limitExceeds ? <div className='warning'>Movie title should not be more than 100 characters</div> : null}
+                    { ( titleError.fieldEmpty && feildRequired )?<div className='warning shake-text'>Movie title cannot be blank</div> : null}
+
 
                     <div className='form-group'>
                         <textarea name='summary' id='summary' rows='15' cols='20' placeholder='Summary' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
                     </div>
+                    { summaryError.limitExceeds ? <div className='warning'>Try to keep summary crisp. Can't be more than 500 characters long. </div> : null}
 
                     <div className='form-group'>
                         <input name='cast' id='cast' type='text' placeholder='Cast' value={castNameCSV} onChange={handleFeildChange}></input><br />
                     </div>
+                    {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
+                    {castError.limitExceeds ? <div className='warning'>Name should not be more than 50 characters</div> : null}
 
                     <div className='form-group'>
                         <span className="required">*</span>
-                        <Select name='genres' id='genres' isMulti 
-                        placeholder='Choose Genres'
-                        getOptionLabel={option => option.name} 
-                        getOptionValue={option => option.id}
-                        options={genreList} 
-                        onChange={handleDropdownChange} /><br />
+                        <Select name='genres' id='genres' isMulti
+                            placeholder='Choose Genres'
+                            getOptionLabel={option => option.name}
+                            getOptionValue={option => option.id}
+                            options={genreList}
+                            onChange={handleDropdownChange} /><br />
                     </div>
+                    { ( genreError.fieldEmpty && feildRequired )?<div className='warning shake-text'>Please select atleast one genre</div> : null}
                     <div className='btn-center'>
                         <button type='submit' onClick={handleSubmit} className='btn'>Submit</button>
                     </div>
-
-                    <p className="bottom-text">
+                
+                    <p className={(feildRequired)?" bottom-text shake-text":"bottom-text"}>
                         <strong>Note: </strong> <span className="required">*</span> marked feilds are required
                     </p>
                 </form>

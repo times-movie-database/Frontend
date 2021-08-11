@@ -18,7 +18,7 @@
   width: 70%;
   position: relative;
   border: 1px solid black;
-  background-color: palegoldenrod;
+  background-color: white;
   margin: auto;
   border-radius: 0.5em;
 }
@@ -30,7 +30,7 @@
   text-align: center;
 }
 .header .opt {
-  background-color: palegoldenrod;
+  background-color: white;
 }
 .header .slt {
   width: 10%;
@@ -66,6 +66,6 @@
   padding-top: 3em;
   padding-left: 1em;
   padding-bottom: 2em;
-  background-image: linear-gradient(indigo,lightblue);
+  background-color: #0A1852;
   padding-right: 2em;
 }

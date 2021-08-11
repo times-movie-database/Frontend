@@ -6,7 +6,8 @@
   border-radius: 1em;
   width: 12.5em;
   text-align: center;
-  background-color: rgba(204, 255, 229, 0.6);
+  background-color: #00897B;
+  color: white;
   cursor: pointer;
 }
 .checked {

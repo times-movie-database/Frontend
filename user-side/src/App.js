@@ -8,6 +8,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import MovieDetails from './components/MovieDetails';
 
 function App() {
   return (
@@ -33,6 +34,11 @@ function App() {
           <Route path="/search/keyword">
             <ErrorBoundary>
               <SearchScreen />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/movie/name">
+            <ErrorBoundary>
+              < MovieDetails/>
             </ErrorBoundary>
           </Route>
 

@@ -1,9 +1,16 @@
 import Card from "./Card.js";
+import { useState,useEffect } from "react";
 import './HomeScreen.css';
+import { getmovie } from '../Services';
 export default function HomeScreen(){
+    const [movies,setMovies]=useState([]);
+    useEffect(() => {
+        getmovie(response => setMovies(response.data),10);
+        
+        },[])
     return(
         <div id="container1">
-            <div >
+            <div id="dropdown" >
             <label htmlFor="menu1" className='fn'>Top 10 in </label>
             <select id='menu1'>
             <option>Genre</option>
@@ -11,17 +18,8 @@ export default function HomeScreen(){
         </select>
             </div>
         <div className='grid'>
-            
-        <Card className="card" title="Tenet" rating="4" count='1'>TENET</Card>
-        <Card className="card" title="Interstellar" rating="3" count='2'>INTERSTELLAR</Card>
-        <Card className="card" title="Tenet" rating="4" count='3'>TENET</Card>
-        <Card className="card" title="Interstellar" rating="3" count='4'>INTERSTELLAR</Card>
-        <Card className="card" title="Tenet" rating="4" count='5'>TENET</Card>
-        <Card className="card" title="Tenet" rating="4" count='6'>TENET</Card>
-        <Card className="card" title="Interstellar" rating="3" count='7'>INTERSTELLAR</Card>
-        <Card className="card" title="Tenet" rating="4" count='8'>TENET</Card>
-        <Card className="card" title="Interstellar" rating="3" count='9'>INTERSTELLAR</Card>
-        <Card className="card" title="Tenet" rating="4" count='10'>TENET</Card>
+        {movies.map((movie)=>
+        <Card className="card" title={movie.title} rating={movie.rating}></Card>)}
         </div>
         </div>
         

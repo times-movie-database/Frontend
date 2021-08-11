@@ -9,20 +9,29 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
- 
+import ErrorBoundary from './components/ErrorBoundary';
+
 ReactDOM.render(
   <React.StrictMode>
-      <Router>
+    <Router>
       <div>
-      <Switch>
+        <Switch>
+          
           <Route exact path="/movie/id/edit">
           </Route>
+
           <Route exact path="/movie/add">
-            <Header searchBar="no" addButton="no" />
+            <ErrorBoundary>
+              <Header searchBar="no" addButton="no" />
+            </ErrorBoundary>
           </Route>
+
           <Route path="/">
-          <Header searchBar="yes" addButton="yes" />
+            <ErrorBoundary>
+              <Header searchBar="yes" addButton="yes" />
+            </ErrorBoundary>
           </Route>
+          
         </Switch>
       </div>
     </Router>
@@ -30,7 +39,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
- 
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

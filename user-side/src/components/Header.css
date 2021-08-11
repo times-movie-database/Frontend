@@ -40,6 +40,9 @@
   background-color: transparent;
   text-align: center;
 }
+.header .img{
+  cursor: pointer;
+}
 .header .add-movie {
   width: 10%;
   font-size: 0.75em;

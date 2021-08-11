@@ -5,19 +5,22 @@ export default function Header(props) {
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
   };
+  const redirectToHomeScreen=()=>{
+    window.location.href = "/";
+  }
   const [keyword,setKeyword]=useState('');
   const searchHandler=(event)=>{
         setKeyword(event.target.value);
   };
   const submitHandler=(event)=>{
-        const movietitle=keyword;
-        console.log(movietitle);    
+        console.log(keyword);    
+        window.location.href='/search/keyword';
   };
   return (
     
     <div className="header background">
       <div className="container1">
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" onClick={redirectToHomeScreen} className="header img" />
 
         {props.searchBar === "yes" ? (
           <div className="container2">

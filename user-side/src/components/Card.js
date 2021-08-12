@@ -1,4 +1,5 @@
 import "./Card.css";
+import Rating from "react-rating";
 export default function Card(props) {
   return (
     <div className={props.className}>
@@ -7,12 +8,7 @@ export default function Card(props) {
         <h2>{props.title}</h2>
       </div>
       <div className="card-rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>
+        <Rating initialRating={props.rating} emptySymbol="fa fa-star" fullSymbol="fa fa-star checked" readonly={true} fractions={10}></Rating>       </div>
     </div>
   );
 }

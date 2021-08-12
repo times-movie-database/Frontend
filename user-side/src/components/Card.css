@@ -8,6 +8,7 @@
   text-align: center;
   background-color: #00897B;
   color: white;
+  overflow: auto;
   cursor: pointer;
 }
 .checked {
@@ -24,6 +25,4 @@
   box-shadow: 0 8px 16px 0 inset rgba(255, 0, 255, 0.5);
 }
 
-.container {
-  padding: 2px 16px;
-}
+

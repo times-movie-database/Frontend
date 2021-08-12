@@ -10,7 +10,17 @@ export default function SearchScreen(props){
         
         },[])
     return(
-    <div id='container2'>
+    <div className='search'>
+
+        <div id="container">
+            <div className="right">
+                
+            <span className="text">Search Result in </span>
+            <select>
+            <option>All</option>
+            <option>Genre</option>
+        </select>
+            </div>
         <div className='searchgrid'>
             {movies.map((movie,index)=>
              <ErrorBoundary><Card className="card" title={movie.title} rating={movie.rating}></Card></ErrorBoundary>
@@ -18,6 +28,7 @@ export default function SearchScreen(props){
             }
             
             </div>
+        </div>
 
     </div>)
 

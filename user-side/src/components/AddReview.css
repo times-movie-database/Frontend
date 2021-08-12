@@ -1,0 +1,33 @@
+.popup{
+    position: relative;
+    margin: 30px auto;
+    height: 65vh;
+    color: white;
+    width:50%;
+    align-items: center;
+    background-color:#00897B;
+    border-radius: 0.5em;
+
+}
+.review{
+    cursor:pointer;
+}
+.popup .text{
+    text-align: center;
+}
+.popup textarea{
+    width:94%;
+    height:30vh;
+    margin: auto 8px;
+    padding: 12px;
+    border: #ddd 1px solid;
+    border-radius: 5px;
+    resize: none;
+    
+    font-size: 14px;
+    font-family: Arial;
+    text-align: center;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;}

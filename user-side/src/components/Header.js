@@ -1,6 +1,6 @@
 import "./Header.css";
-import logo from "./images/placeholder.png";
-import { useState } from "react";
+import logo from "./images/logo.png";
+import { useState} from "react";
 export default function Header(props) {
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
@@ -9,11 +9,12 @@ export default function Header(props) {
     window.location.href = "/";
   }
   const [keyword,setKeyword]=useState('');
+
   const searchHandler=(event)=>{
         setKeyword(event.target.value);
   };
   const submitHandler=(event)=>{
-        console.log(keyword);    
+        
         window.location.href='/search/keyword';
   };
   return (
@@ -24,12 +25,12 @@ export default function Header(props) {
 
         {props.searchBar === "yes" ? (
           <div className="container2">
-            <input type="text" id="form1" placeholder="Search..." onChange={searchHandler} />
+            <input type="text" id="form1" value={keyword} placeholder="Search..." onChange={searchHandler} />
             <select className="slt">
               <option className="opt">Genre</option>
               <option className="opt">All</option>
             </select>
-            <button type="submit" className="btn" onClick={submitHandler}>
+            <button className="btn" onClick={submitHandler}>
               <i className="fa fa-search"></i>
             </button>
           </div>

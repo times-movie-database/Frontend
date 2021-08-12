@@ -20,7 +20,7 @@
   border: 1px solid black;
   background-color: white;
   margin: auto;
-  border-radius: 0.5em;
+  border-radius: 0.5em; 
 }
 .header input[type="text"] {
   width: 85%;
@@ -46,7 +46,7 @@
 .header .add-movie {
   width: 10%;
   font-size: 0.75em;
-  padding: 0.5em 0.5em;
+  padding: 0.5em 0.5em; 
   border-radius: 0.5em;
   color: white;
   justify-content: space-around;
@@ -63,9 +63,9 @@
   cursor: pointer;
 }
 .background {
-  padding-top: 3em;
-  padding-left: 1em;
-  padding-bottom: 2em;
   background-color: #0A1852;
-  padding-right: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 2em; 
 }

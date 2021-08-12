@@ -1,5 +1,5 @@
 import "./Header.css";
-import logo from "./images/placeholder.png";
+import logo from "./images/logo.png";
 import { useState } from "react";
 export default function Header(props) {
   const redirectToAddMovie = () => {

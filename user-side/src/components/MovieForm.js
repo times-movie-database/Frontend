@@ -2,7 +2,7 @@ import './MovieForm.css';
 import { useState } from 'react';
 import { useRef } from "react";
 import Select from 'react-select'
-import { sendMovieToDB } from '../Services';
+import { getAllGenre, sendMovieToDB } from '../Services';
 
 export default function MovieForm() {
 
@@ -44,11 +44,13 @@ export default function MovieForm() {
     const [inValidName, setInValidName] = useState(false);
     const [feildRequired, setFeildRequired] = useState(false);
     /*genres*/
-    const genreList = [
-        { id: 1, name: 'Drama' },
-        { id: 2, name: 'Romance' },
-        { id: 3, name: 'Sci-Fi' }
-    ]
+    const [genreList, setGenreList] =useState([])
+    
+    /*get genre list from server*/
+    getAllGenre().then( (res) => {
+        setGenreList(res.data)
+        console.log(genreList);
+    })
 
     const validateTitle = (title, value) => {
         /*To check if max allowed lenght reached*/
@@ -185,8 +187,9 @@ export default function MovieForm() {
             setFeildRequired(false);
             sendMovieToDB(
                 movieDetails,
-                () => {
+                (res) => {
                     alert("Success");
+                    console.log(res.data);
                     handleReset();
                 },
                 (error) => {

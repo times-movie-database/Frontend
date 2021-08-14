@@ -1,10 +1,6 @@
 import "./Header.css";
 import logo from "./images/logo.png";
 import { useState } from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> 48b27d5dd5d43e18231157b46749585ea46d2528
 export default function Header(props) {
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";

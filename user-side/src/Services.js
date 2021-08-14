@@ -1,8 +1,12 @@
 import axios from "axios";
 
 export function sendMovieToDB(movie, successCB, errorCB){
-    const URL="http://localhost:4200/movies"
-    axios.post(URL,movie).then(successCB).catch(errorCB);
+    axios.post(process.env.REACT_APP_POST_MOVIE_ENDPOINT,movie).then(successCB).catch(errorCB);
+}
+
+export async function getAllGenre( successCB, errorCB ){
+    const response = axios.get(process.env.REACT_APP_GET_GENRE_ENDPOINT);
+    return response;
 }
 export function getmovie(successCB,l=1000){
     const URL="http://localhost:4200/movies"

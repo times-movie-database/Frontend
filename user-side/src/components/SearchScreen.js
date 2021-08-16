@@ -10,14 +10,12 @@ export default function SearchScreen(props) {
   }, []);
   return (
     <div className="search">
-      <div id="container">
-        <div className="right">
-          <label htmlFor="genre-search" className="text">Search Result in </label>
-          <select id="genre -search">
+      <label htmlFor="genre-search" className="text">Search Result in </label>
+          <select className="genre-menu">
             <option>All</option>
             <option>Genre</option>
           </select>
-        </div>
+      <div id="container">
         <div className="searchgrid">
           {movies.map((movie, index) => (
             <ErrorBoundary>

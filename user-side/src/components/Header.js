@@ -2,6 +2,9 @@ import "./Header.css";
 import logo from "./images/logo.png";
 import { useState } from "react";
 export default function Header(props) {
+  const [fieldRequired, setFieldRequired] = useState(false);
+
+
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
   };
@@ -14,6 +17,7 @@ export default function Header(props) {
         setKeyword(event.target.value);
   };
   const submitHandler=(event)=>{
+        event.preventDefault();
         
         window.location.href='/search/keyword';
   };

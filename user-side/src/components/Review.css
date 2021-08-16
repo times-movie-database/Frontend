@@ -1,8 +1,8 @@
 .review{
     border-radius: 0.5em;
     box-shadow: 0 2px 20px gray;
-    background-color: #00897B;
-    color: white;
+    /* background-color: #00897B;*/
+    color: black; 
     padding:1em;
     overflow: auto;
     font-weight: none;
@@ -22,7 +22,7 @@
 .timestamp{
     font-size: small;
     top: 0;
-    color:wheat;
+    /* color:wheat; */
     text-align: right;
 }
 .review .content{

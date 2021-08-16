@@ -231,7 +231,7 @@ export default function MovieForm() {
                         <input name='cast' id='cast' type='text' placeholder='Enter comma separated names here' value={castNameCSV} onChange={handleFeildChange}></input><br />
                     </div>
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
-                    {castError.limitExceeds ? <div className='warning'>Name should not be more than 50 characters</div> : null}
+                    {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
 
                     <div className='form-group'>
                     <label for='genres' name='genre-dropdown'>

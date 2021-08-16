@@ -30,7 +30,7 @@
 }
 .movie-form .form-wrap .form-group input,
 .movie-form .form-wrap .form-group textarea{
-    width:94%;
+    width:100%;
     padding: 12px;
     border: #ddd 1px solid;
     border-radius: 5px;

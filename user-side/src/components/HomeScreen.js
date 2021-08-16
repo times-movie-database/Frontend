@@ -13,14 +13,14 @@ export default function HomeScreen(){
         <div id="container1">
             <div id="dropdown" >
             <label htmlFor="menu1" className='fn'>Top 10 in </label>
-            <select id='menu1'>
+            <select className='genre-menu'>
             <option>Genre</option>
             <option>All</option>
         </select>
             </div>
         <div className='grid'>
-        {movies.map((movie)=>
-        <ErrorBoundary><Card className="card" title={movie.title} rating={movie.rating}></Card></ErrorBoundary>)}
+        {movies.map((movie,index)=>
+        <ErrorBoundary><Card className="card" title={movie.title} rating={movie.rating} key={index}></Card></ErrorBoundary>)}
         </div>
         </div>
         

@@ -15,11 +15,14 @@
 .popup .text{
     text-align: center;
 }
+.center-textarea{
+    text-align: center;
+}
 .popup textarea{
-    width:94%;
+    width:50%;
     height:30vh;
-    margin: auto 8px;
-    padding: 12px;
+    /* margin: auto 8px;
+    padding: 12px; */
     border: #ddd 1px solid;
     border-radius: 5px;
     resize: none;

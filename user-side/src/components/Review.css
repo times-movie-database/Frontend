@@ -1,0 +1,33 @@
+.review{
+    border-radius: 0.5em;
+    box-shadow: 0 2px 20px gray;
+    background-color: #00897B;
+    color: white;
+    padding:1em;
+    overflow: auto;
+    font-weight: none;
+    max-height: 200px; 
+}
+.review::-webkit-scrollbar {
+    display: none;
+}
+
+.review {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
+.review:hover{
+    box-shadow: 0 8px 16px 0 inset rgba(255, 0, 255, 0.5);
+}
+.timestamp{
+    font-size: small;
+    top: 0;
+    color:wheat;
+    text-align: right;
+}
+.review .content{
+    text-align: justify;
+}
+.read-more{
+    font-weight: bolder;
+}

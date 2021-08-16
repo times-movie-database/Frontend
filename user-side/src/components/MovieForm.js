@@ -44,10 +44,10 @@ export default function MovieForm() {
     const [inValidName, setInValidName] = useState(false);
     const [feildRequired, setFeildRequired] = useState(false);
     /*genres*/
-    const [genreList, setGenreList] =useState([])
-    
+    const [genreList, setGenreList] = useState([])
+
     /*get genre list from server*/
-    getAllGenre().then( (res) => {
+    getAllGenre().then((res) => {
         setGenreList(res.data)
         console.log(genreList);
     })
@@ -93,7 +93,7 @@ export default function MovieForm() {
         const regex = /^[,a-zA-Z ]/;
         return regex.test(character);
     }
-   
+
     const validateCastName = (csv) => {
         const lastChar = csv.charAt(csv.length - 1);
         const newCast = parseLastNameInCSV(csv);
@@ -162,15 +162,15 @@ export default function MovieForm() {
 
         /*Reset every feild*/
         Array.from(document.querySelectorAll("input")).forEach(
-            input => (input.value = "") );
+            input => (input.value = ""));
         dropdownSelectInputRef.current.select.clearValue();
 
         /*reset error properties for each feild*/
-        setTitleError( { ...titleError, fieldEmpty:true } );
-        setCastError( { ...castError, fieldEmpty:true } );
-        setSummaryError( { ...summaryError, fieldEmpty:true } );
-        setGenreError( { ...genreError, fieldEmpty:true } );
-        
+        setTitleError({ ...titleError, fieldEmpty: true });
+        setCastError({ ...castError, fieldEmpty: true });
+        setSummaryError({ ...summaryError, fieldEmpty: true });
+        setGenreError({ ...genreError, fieldEmpty: true });
+
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -207,29 +207,40 @@ export default function MovieForm() {
                 <form>
 
                     <div className='form-group'>
-                        <span className="required">*</span>
-                        <input name='title' id='title' type='text' placeholder='Movie Title' value={movie.title} onChange={handleFeildChange}></input><br />
+                        <label for='title' name='title'>
+                            Movie Title <span className="required">*</span>
+                        </label>
+                        <input name='title' id='title' type='text' placeholder='Enter here' value={movie.title} onChange={handleFeildChange}></input><br />
                     </div>
                     {titleError.limitExceeds ? <div className='warning'>Movie title should not be more than 100 characters</div> : null}
                     {(titleError.fieldEmpty && feildRequired) ? <div className='warning shake-text'>Movie title cannot be blank</div> : null}
 
 
                     <div className='form-group'>
-                        <textarea name='summary' id='summary' rows='15' cols='20' placeholder='Summary' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
+                        <label for='summary' name='plot'>
+                            Plot
+                        </label>
+                        <textarea name='summary' id='summary' rows='15' cols='20' placeholder='Enter here' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
                     </div>
                     {summaryError.limitExceeds ? <div className='warning'>Try to keep summary crisp. Can't be more than 500 characters long. </div> : null}
 
                     <div className='form-group'>
-                        <input name='cast' id='cast' type='text' placeholder='Cast' value={castNameCSV} onChange={handleFeildChange}></input><br />
+                        <label for='cast' name='cast-csv'>
+                            Casts
+                        </label>
+                        <input name='cast' id='cast' type='text' placeholder='Enter comma separated names here' value={castNameCSV} onChange={handleFeildChange}></input><br />
                     </div>
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
                     {castError.limitExceeds ? <div className='warning'>Name should not be more than 50 characters</div> : null}
 
                     <div className='form-group'>
+                    <label for='genres' name='genre-dropdown'>
+                            Genres
+                        </label>
                         <span className="required">*</span>
                         <Select name='genres' id='genres' isMulti
-                            ref = { dropdownSelectInputRef }
-                            placeholder='Choose Genres'
+                            ref={dropdownSelectInputRef}
+                            placeholder='Choose relavant genres'
                             getOptionLabel={option => option.name}
                             getOptionValue={option => option.id}
                             options={genreList}

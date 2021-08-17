@@ -30,12 +30,9 @@
 @media screen and (max-width: 768px) {
   .searchgrid {
     display: grid;
-    margin: 2em auto;
+    margin: 3em auto;
     grid-row-gap: 3em;
     grid-template-columns: auto;
-  }
-  .search {
-   
   }
   .search #container {
     max-width: 200px;
@@ -50,9 +47,9 @@
     font-weight: bold;
   }
 
-  .search #container select {
+  .genre-menu {
     width: 30%;
-    height: 20%;
+    height: 10%;
     font-size: large;
   }
 }

@@ -10,7 +10,7 @@ export default function Review(props) {
   return (
     <div className="review">
       <div className="timestamp">
-        19-02-1998
+        {props.timestamp}
         <br/>
         <br/>
       </div>

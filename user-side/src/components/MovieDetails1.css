@@ -1,18 +1,9 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 .details-title{
-    color:white;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
     text-align: center;
-    
-}
-
-
-.rate-this-star{
-    /* border:2px solid #2962FF; */
-    color:#2962FF;
-    font-weight: bolder;
-    font-size: 1.5em;
+    padding-bottom: 1em;
 }
 .tagged{
     color: white;
@@ -29,8 +20,19 @@
     font-weight: bolder;
     font-size: large;
 }
+.modal-submit{
+    padding-top: 4em;
+    text-align: center;
+    left:0;
+}
+.modal-btn{
+    background-color: #FDD835;
+    color: #fff;
+    border-radius:5px;
+    font-size:1em;
+}
 .close-btn{
-    color:white;
+    /* color:white; */
     font-size: x-large;
     font-weight: bold;
     background-color: transparent;
@@ -43,10 +45,24 @@
     text-align: right;
 
 }
-.edit-btn{
+.rate-this-star{
+    /* border:2px solid #2962FF; */
+    color:#2962FF;
+    font-weight: bolder;
     font-size: 1.5em;
-    border: none;
-    background-color: transparent;   
+}
+.user-reviews{
+    color: #fff;
+    background-color: #666666;
+    padding:5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.edit-btn{
+    font-size: 8px;
+    color: white;
+    border-radius: 0.25em;
+    background-color: #666666;   
     cursor: pointer;
 }
 /* ********************************************************************************************************** */
@@ -127,7 +143,7 @@
     
 }
 .cast-title{
-    color: #2962FF;
+    /* color: #2962FF; */
     font-weight: bold;
     font-size: 1em;
 }
@@ -146,9 +162,9 @@
 }
 
 .summary-item {
-    padding-top: 1em;
     text-align: justify;
     min-height: 40vh;
+    padding-top: 1em;
     max-width: 700px;
 }
 
@@ -161,7 +177,7 @@
 .title {
     flex: 10;
     font-size: 2em;
-    color: #00796b;
+    /* color: #00796b; */
     font-size:xx-large;
     text-transform: uppercase;
     font-weight: bold;
@@ -195,7 +211,8 @@
     font-style: italic;
  }
 .personal-rating {
-    text-align: center;
+    padding-left: 2em;
+    text-align: right;
     flex: 3;
 }
 
@@ -203,6 +220,8 @@
     display: flex;
     flex-direction: column;
     flex:3;
+    margin-left:10em;
+    margin-right: 5em;
     overflow: auto;
     color: #00796b;
     font-size: large;

@@ -1,9 +1,8 @@
 import "./Header.css";
 import logo from "./images/logo.png";
 import { useState,useEffect } from "react";
-import { getAllGenre, sendMovieToDB } from '../Services';
+import { getAllGenre} from '../Services';
 export default function Header(props) {
-  const [fieldRequired, setFieldRequired] = useState(false);
   const [values, setValues] = useState({keyword:'',genre:[]});
   const [genreList,setGenreList]=useState([])
   const [errors, setErrors] = useState({ fieldsEmpty: true });
@@ -14,10 +13,15 @@ export default function Header(props) {
     }
     return errors;
   }
+
   /*get genre list from server*/
-  useEffect(() => {
-    getAllGenre(response => setGenreList(response.data));
-  }, [])
+  useEffect(()=>{
+    getAllGenre().then((res) => {
+      setGenreList(res.data)
+      console.log(genreList);
+  })
+  })
+  
 
   const handleChange = (event) => {
     setValues({[event.target.name]: event.target.value});
@@ -61,7 +65,7 @@ export default function Header(props) {
               // onChange={handleChange}
             >
               <option defaultValue>Genre</option>
-              {genreList.map((genre)=><option className="opt" key={genre} value={genre}>{genre}</option>)}
+              {genreList.map((genre)=><option className="opt" key={genre.id} value={genre.id}>{genre.name}</option>)}
             </select>
             <button className="btn" onClick={handleSubmit}>
               <i className="fa fa-search"></i>

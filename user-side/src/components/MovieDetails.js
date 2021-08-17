@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./AddReview.css";
 import Modal from "react-modal";
 import AddRating from "./AddRating";
 import Review from "./Review";
 import "./MovieDetails1.css";
 import Rating from "react-rating";
+import { getmovie } from '../Services';
 Modal.setAppElement("#root");
-export default function MovieDetails() {
+export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
   const [rating, setRating] = useState(false);
+  const[movie,setMovie]=useState([])
   const redirectToEditMovie = () => {
     window.location.href = "/movie/add";
+    
   };
+  useEffect(() => {
+    getmovie(response => setMovie(response.data));
+    
+    },[])
   return (
     <div className="main-container">
       <div className="detail-container">

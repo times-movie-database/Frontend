@@ -72,6 +72,9 @@
   padding-left: 2em;
   padding-right: 2em;
 }
+option{
+  text-transform: capitalize;
+}
 
 @media screen and (max-width: 768px) {
   .header img {
@@ -105,4 +108,5 @@
     width: 15%;
     cursor: pointer;
   }
+  
 }

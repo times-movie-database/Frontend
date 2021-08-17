@@ -37,15 +37,27 @@
   border-right: 1px solid black;
 }
 .header .add-movie {
+  display: flex;
   width: 10%;
   font-size: 0.75em;
   padding: 0.5em 0.5em;
   border-radius: 0.5em;
   color: white;
+  justify-content: space-evenly;
   height: 20%;
   margin: auto;
   background-color: orange;
-  cursor: pointer;
+  cursor:pointer;
+  align-items: center;
+}
+.header .add-movie .add-symbol{
+  font-size: 2em;
+
+}
+
+.header .add-movie .add-text{
+ 
+  text-align: center;
 }
 .header .btn {
   width: 5%;
@@ -74,6 +86,12 @@
   }
   .header .add-movie {
   }
+  .header .add-movie .add-symbol{
+    font-weight: bold;
+ }
+ .header .add-movie .add-text{
+   display: none;
+ }
   .header .container-inner {
     width: 50%;
   }

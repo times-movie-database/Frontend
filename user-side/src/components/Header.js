@@ -70,9 +70,10 @@ export default function Header(props) {
         ) : null}
 
         {props.addButton === "yes" ? (
-          <button className="add-movie" onClick={redirectToAddMovie}>
-            Add a Movie
-          </button>
+          <div className="add-movie" onClick={redirectToAddMovie}>
+            <div className="add-symbol">+</div>
+            <div className="add-text">Add a movie </div>
+          </div>
         ) : null}
       </div>
       

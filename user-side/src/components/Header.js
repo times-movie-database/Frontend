@@ -1,40 +1,69 @@
 import "./Header.css";
 import logo from "./images/logo.png";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { getAllGenre, sendMovieToDB } from '../Services';
 export default function Header(props) {
   const [fieldRequired, setFieldRequired] = useState(false);
+  const [values, setValues] = useState({keyword:'',genre:[]});
+  const [genreList,setGenreList]=useState([])
+  const [errors, setErrors] = useState({ fieldsEmpty: true });
+  const handleError=(values)=>{
+    let errors=[];
+    if(!values.keyword.trim() && values.genre==='Genre'){
+      errors="Enter either a movie name or select a genre";
+    }
+    return errors;
+  }
+  /*get genre list from server*/
+  useEffect(() => {
+    getAllGenre(response => setGenreList(response.data));
+  }, [])
 
-
+  const handleChange = (event) => {
+    setValues({[event.target.name]: event.target.value});
+  };
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
   };
-  const redirectToHomeScreen=()=>{
+  const redirectToHomeScreen = () => {
     window.location.href = "/";
-  }
-  const [keyword,setKeyword]=useState('');
-
-  const searchHandler=(event)=>{
-        setKeyword(event.target.value);
   };
-  const submitHandler=(event)=>{
-        event.preventDefault();
-        
-        window.location.href='/search/keyword';
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors(handleError(values));
+    window.location.href = "/search/keyword";
   };
   return (
-    
     <div className="header background">
-      <div className="container1">
-        <img src={logo} alt="Logo" onClick={redirectToHomeScreen} className="header img" />
+      <div className="container-outer">
+        <img
+          src={logo}
+          alt="Logo"
+          onClick={redirectToHomeScreen}
+          className="header img"
+        />
 
         {props.searchBar === "yes" ? (
-          <div className="container2">
-            <input type="text" id="form1" value={keyword} placeholder="Search..." onChange={searchHandler} />
-            <select className="slt">
-              <option className="opt">Genre</option>
-              <option className="opt">All</option>
+          <div className="container-inner">
+            <input
+              name="search"
+              type="text"
+              id="form1"
+              value={values.keyword}
+              placeholder="Search..."
+              onChange={handleChange}
+            />
+            <select
+              name="genre"
+              className="slt"
+              // value={values.genre}
+              // onChange={handleChange}
+            >
+              <option defaultValue>Genre</option>
+              {genreList.map((genre)=><option className="opt" key={genre} value={genre}>{genre}</option>)}
             </select>
-            <button className="btn" onClick={submitHandler}>
+            <button className="btn" onClick={handleSubmit}>
               <i className="fa fa-search"></i>
             </button>
           </div>
@@ -46,6 +75,7 @@ export default function Header(props) {
           </button>
         ) : null}
       </div>
+      
     </div>
   );
 }

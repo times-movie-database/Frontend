@@ -117,6 +117,12 @@
         padding-right: none;
         
     }
+    .review-container {
+        display: flex;
+        flex-direction: column;
+        flex:3;
+        
+    }
 }
 .review-heading{
     font-weight: bold;
@@ -220,8 +226,8 @@
     display: flex;
     flex-direction: column;
     flex:3;
-    margin-left:10em;
-    margin-right: 5em;
+    /* margin-left:10em;
+    margin-right: 5em; */
     overflow: auto;
     color: #00796b;
     font-size: large;

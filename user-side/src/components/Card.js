@@ -8,7 +8,14 @@ export default function Card(props) {
         <h2>{props.title}</h2>
       </div>
       <div className="card-rating">
-        <Rating initialRating={props.rating} emptySymbol="fa fa-star" fullSymbol="fa fa-star checked" readonly={true} fractions={10}></Rating>       </div>
+        <Rating
+          initialRating={props.rating}
+          emptySymbol="fa fa-star"
+          fullSymbol="fa fa-star checked"
+          readonly={true}
+          fractions={10}
+        ></Rating>{" "}
+      </div>
     </div>
   );
 }

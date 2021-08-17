@@ -12,7 +12,7 @@ export default function HomeScreen(){
           setGenreList(res.data)
           console.log(genreList);
       })
-      })
+      },[])
       
     useEffect(() => {
         getmovie(response => setMovies(response.data),10);

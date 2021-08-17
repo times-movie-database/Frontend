@@ -1,42 +1,51 @@
 import "./Header.css";
 import logo from "./images/logo.png";
 import { useState,useEffect } from "react";
-import { getAllGenre} from '../Services';
+import { getAllGenre,searchMovie} from '../Services';
+import React from "react";
 export default function Header(props) {
-  const [values, setValues] = useState({keyword:'',genre:[]});
+  const [keyword, setKeyword] = useState('');
   const [genreList,setGenreList]=useState([])
-  const [errors, setErrors] = useState({ fieldsEmpty: true });
-  const handleError=(values)=>{
-    let errors=[];
-    if(!values.keyword.trim() && values.genre==='Genre'){
-      errors="Enter either a movie name or select a genre";
-    }
-    return errors;
-  }
+  const [genre,setGenre]=useState([]);
+  const [searchResult,setSearchResult]=useState([]);
+  let err='';
 
   /*get genre list from server*/
-  useEffect(()=>{
+  if(genreList.length===0){
     getAllGenre().then((res) => {
-      setGenreList(res.data)
-      console.log(genreList);
-  })
-  })
+        setGenreList(res.data);
+    })
+}
   
 
-  const handleChange = (event) => {
-    setValues({[event.target.name]: event.target.value});
+  const handleKeyword = (event) => {
+    setKeyword({keyword,[event.target.name]: event.target.value});
   };
+  console.log(keyword);
+  const handleGenre=(event)=>{
+     setGenre({genre,[event.target.name]: event.target.value});
+  }
+  console.log(genre);
+
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
   };
   const redirectToHomeScreen = () => {
-    window.location.href = "/";
+    searchMovie("",0).then(res=>{setSearchResult(res.data)})
+    console.log(searchResult);
+    // window.location.href = "/";
   };
-
+   
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrors(handleError(values));
-    window.location.href = "/search/keyword";
+    if(keyword && genre)
+    {
+      window.location.href = "/search/keyword";
+
+    }
+    else{
+      alert("select either a movie name or genre");
+    }
   };
   return (
     <div className="header background">
@@ -54,15 +63,15 @@ export default function Header(props) {
               name="search"
               type="text"
               id="form1"
-              value={values.keyword}
+              value={keyword.value}
               placeholder="Search..."
-              onChange={handleChange}
+              onChange={handleKeyword}
             />
             <select
               name="genre"
               className="slt"
-              // value={values.genre}
-              // onChange={handleChange}
+              value={genre.value}
+              onChange={handleGenre}
             >
               <option defaultValue>Genre</option>
               {genreList.map((genre)=><option className="opt" key={genre.id} value={genre.id}>{genre.name}</option>)}
@@ -80,7 +89,6 @@ export default function Header(props) {
           </div>
         ) : null}
       </div>
-      
     </div>
   );
 }

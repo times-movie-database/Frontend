@@ -47,10 +47,11 @@ export default function MovieForm() {
     const [genreList, setGenreList] = useState([])
 
     /*get genre list from server*/
-    getAllGenre().then((res) => {
-        setGenreList(res.data)
-        console.log(genreList);
-    })
+    if(genreList.length==0){
+        getAllGenre().then((res) => {
+            setGenreList(res.data);
+        })
+    }
 
     const validateTitle = (title, value) => {
         /*To check if max allowed lenght reached*/

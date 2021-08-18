@@ -15,3 +15,8 @@ export function getmovie(successCB,l=1000){
     const URL="http://localhost:4200/movies"
     axios.get(URL,{params:{_limit:l}}).then(successCB)
 }
+export function searchMovie(title,genre_id,successCB,errorCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/search?title="+title+"&genre="+genre_id; 
+    const response=axios.get(URL).then(successCB).catch(errorCB);
+    return response;
+}

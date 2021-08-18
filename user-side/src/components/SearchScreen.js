@@ -14,9 +14,8 @@ export default function SearchScreen(props) {
    useEffect(()=>{
     getAllGenre().then((res) => {
       setGenreList(res.data)
-      console.log(genreList);
   })
-  })
+  },[])
   
   return (
     <div className="search">

@@ -47,7 +47,7 @@ export default function MovieForm() {
     const [genreList, setGenreList] = useState([])
 
     /*get genre list from server*/
-    if(genreList.length==0){
+    if(genreList.length===0){
         getAllGenre().then((res) => {
             setGenreList(res.data);
         })

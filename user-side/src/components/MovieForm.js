@@ -4,19 +4,13 @@ import { useRef } from "react";
 import Select from 'react-select'
 import { getAllGenre, sendMovieToDB } from '../Services';
 
-export default function MovieForm() {
+export default function MovieForm( props ) {
 
     const TITLE_MAX = 100;
     const SUMMARY_MAX = 500;
     const CAST_NAME_MAX = 50;
     const dropdownSelectInputRef = useRef();
-    const initialMovieState = {
-        title: "",
-        summary: "",
-        genreIdList: []
-    }
-    const [movie, setMovie] = useState(initialMovieState);
-
+   
     /*cast name state*/
     const [castName, setCastName] = useState("");
     const [castNameCSV, setCastNameCSV] = useState("");
@@ -45,14 +39,15 @@ export default function MovieForm() {
     const [feildRequired, setFeildRequired] = useState(false);
     /*genres*/
     const [genreList, setGenreList] = useState([])
-
+    
     /*get genre list from server*/
-    if(genreList.length==0){
+    if(genreList.length===0){
         getAllGenre().then((res) => {
             setGenreList(res.data);
         })
     }
-
+ 
+    
     const validateTitle = (title, value) => {
         /*To check if max allowed lenght reached*/
         if (value.length <= TITLE_MAX) {
@@ -72,6 +67,33 @@ export default function MovieForm() {
 
 
     }
+
+    let initialMovieState; //to keep intial data in form
+    let intialGenre=[]; //to keep genre data in drop down
+    var formHeading; //to keep heading of the form
+    if(props.isEdit){
+        // const genreIDs=props.genres.map((genre) => {
+        //     return genre.id;
+        // })
+        // intialGenre=props.genres;
+        const genreIDs=[];
+        initialMovieState={
+            title: props.title,
+            summary: props.summary,
+            genreList: genreIDs
+        }
+        setCastNameCSV(props.castCSV);
+        formHeading="Edit Movie";
+    }
+    else{
+        initialMovieState = {
+            title: "",
+            summary: "",
+            genreIdList: []
+        }
+        formHeading="Add a Movie";
+    }
+    const [movie, setMovie] = useState(initialMovieState);
 
     const validateSummary = (summary, value) => {
         if (value.length <= SUMMARY_MAX) {
@@ -144,10 +166,10 @@ export default function MovieForm() {
 
     const handleDropdownChange = (e) => {
         /*e is array of genre object*/
-        const genreID = e.map((genre) => {
+        const genreIDs = e.map((genre) => {
             return genre.id;
         })
-        setMovie({ ...movie, genreIdList: genreID });
+        setMovie({ ...movie, genreIdList: genreIDs });
         if (e.length > 0) {
             setGenreError({ ...genreError, fieldEmpty: false });
         }
@@ -182,19 +204,19 @@ export default function MovieForm() {
             const movieDetails = {
                 title: movie.title,
                 summary: movie.summary,
-                casteList: castNameCSV.split(','),
+                castList: castNameCSV.split(','),
                 genreIdList: movie.genreIdList
             };
             setFeildRequired(false);
             sendMovieToDB(
                 movieDetails,
                 (res) => {
-                    alert("Success");
+                    alert("Movie details saved successfully");
                     console.log(res.data);
                     handleReset();
                 },
                 (error) => {
-                    alert(`Error ${error}`);
+                    alert(`${error}`);
                 }
             );
         }
@@ -204,7 +226,7 @@ export default function MovieForm() {
     return (
         <div className='movie-form' id='container'>
             <div className='form-wrap'>
-                <h1>Add a Movie</h1>
+                <h1>{formHeading}</h1>
                 <form>
 
                     <div className='form-group'>
@@ -242,6 +264,7 @@ export default function MovieForm() {
                         <Select name='genres' id='genres' isMulti
                             ref={dropdownSelectInputRef}
                             placeholder='Choose relavant genres'
+                            defaultValue={ intialGenre }
                             getOptionLabel={option => option.name}
                             getOptionValue={option => option.id}
                             options={genreList}
@@ -249,7 +272,7 @@ export default function MovieForm() {
                     </div>
                     {(genreError.fieldEmpty && feildRequired) ? <div className='warning shake-text'>Please select atleast one genre</div> : null}
                     <div className='btn-center'>
-                        <button type='submit' onClick={handleSubmit} className='btn'>Submit</button>
+                        <button type='submit' onClick={handleSubmit} className='btn'>Save</button>
                     </div>
 
                     <p className={(feildRequired) ? " bottom-text shake-text" : "bottom-text"}>

@@ -1,0 +1,30 @@
+.search-bar{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 2em;
+        width: 100%;
+        position: relative;
+        border: 1px solid black;
+        background-color: white;
+        margin: auto;
+        border-radius: 0.5em;
+      
+}
+.search-bar input[type="text"] {
+    width: 95%;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+  }
+  .search-bar .btn {
+    width: 5%;
+    border: 1px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  @media screen and (max-width:768px){
+    .search-bar .btn {
+        width: 15%;
+      }
+  }

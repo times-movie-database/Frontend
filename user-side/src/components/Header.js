@@ -1,55 +1,14 @@
 import "./Header.css";
 import logo from "./images/logo.png";
-import { useState,useEffect } from "react";
-import { getAllGenre,searchMovie} from '../Services';
-import React from "react";
+import SearchBar from "./SearchBar";
 export default function Header(props) {
-  const [keyword, setKeyword] = useState('');
-  const [genreList,setGenreList]=useState([])
-  const [genre,setGenre]=useState([]);
-  const [searchResult,setSearchResult]=useState([]);
-  let err='';
-
-  /*get genre list from server*/
-  if(genreList.length===0){
-    getAllGenre().then((res) => {
-        setGenreList(res.data);
-    })
-}
-  
-
-  const handleKeyword = (event) => {
-    setKeyword({keyword,[event.target.name]: event.target.value});
-  };
-  console.log(keyword);
-  const handleGenre=(event)=>{
-     setGenre({genre,[event.target.name]: event.target.value});
-  }
-  console.log(genre);
-
   const redirectToAddMovie = () => {
     window.location.href = "/movie/add";
   };
   const redirectToHomeScreen = () => {
-    
-    
-     window.location.href = "/";
+    window.location.href = "/";
   };
-   
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    if(keyword && genre)
-    {
-      searchMovie("",0).then(res=>{setSearchResult(res.data)})
-    console.log(searchResult);
-      // window.location.href = "/search/keyword";
 
-    }
-    else{
-      alert("select either a movie name or genre");
-    }
-  };
   return (
     <div className="header background">
       <div className="container-outer">
@@ -59,21 +18,9 @@ export default function Header(props) {
           onClick={redirectToHomeScreen}
           className="header img"
         />
-
         {props.searchBar === "yes" ? (
           <div className="container-inner">
-            <input
-              name="search"
-              type="text"
-              id="form1"
-              value={keyword.value}
-              placeholder="Search..."
-              onChange={handleKeyword}
-            />
-            
-            <button className="btn" onClick={handleSubmit}>
-              <i className="fa fa-search"></i>
-            </button>
+            <SearchBar></SearchBar>
           </div>
         ) : null}
 

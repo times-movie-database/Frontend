@@ -249,7 +249,7 @@ export default function MovieForm() {
                     </div>
                     {(genreError.fieldEmpty && feildRequired) ? <div className='warning shake-text'>Please select atleast one genre</div> : null}
                     <div className='btn-center'>
-                        <button type='submit' onClick={handleSubmit} className='btn'>Submit</button>
+                        <button type='submit' onClick={handleSubmit} className='btn'>Save</button>
                     </div>
 
                     <p className={(feildRequired) ? " bottom-text shake-text" : "bottom-text"}>

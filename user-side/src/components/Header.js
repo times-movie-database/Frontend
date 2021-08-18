@@ -31,16 +31,19 @@ export default function Header(props) {
     window.location.href = "/movie/add";
   };
   const redirectToHomeScreen = () => {
-    searchMovie("",0).then(res=>{setSearchResult(res.data)})
-    console.log(searchResult);
-    // window.location.href = "/";
+    
+    
+     window.location.href = "/";
   };
    
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     if(keyword && genre)
     {
-      window.location.href = "/search/keyword";
+      searchMovie("",0).then(res=>{setSearchResult(res.data)})
+    console.log(searchResult);
+      // window.location.href = "/search/keyword";
 
     }
     else{
@@ -67,15 +70,7 @@ export default function Header(props) {
               placeholder="Search..."
               onChange={handleKeyword}
             />
-            <select
-              name="genre"
-              className="slt"
-              value={genre.value}
-              onChange={handleGenre}
-            >
-              <option defaultValue>Genre</option>
-              {genreList.map((genre)=><option className="opt" key={genre.id} value={genre.id}>{genre.name}</option>)}
-            </select>
+            
             <button className="btn" onClick={handleSubmit}>
               <i className="fa fa-search"></i>
             </button>

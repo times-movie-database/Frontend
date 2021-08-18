@@ -24,18 +24,13 @@
   border-radius: 0.5em;
 }
 .header input[type="text"] {
-  width: 85%;
+  width: 95%;
   background-color: transparent;
   border: none;
   text-align: center;
 }
 
-.header .slt {
-  width: 10%;
-  border: none;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
+
 .header .add-movie {
   display: flex;
   width: 10%;
@@ -75,11 +70,14 @@
 option{
   text-transform: capitalize;
 }
+select{
+  text-transform: capitalize;
+}
 
 @media screen and (max-width: 768px) {
   .header img {
-    width: 30%;
-    height: 30%;
+    width: 20%;
+    height: 20%;
   }
   .background {
     padding-top: 1em;
@@ -100,9 +98,6 @@ option{
   }
   .header input[type="text"] {
     width: 70%;
-  }
-  .header .slt {
-    width: 15%;
   }
   .header .btn {
     width: 15%;

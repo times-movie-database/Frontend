@@ -85,12 +85,6 @@ select{
   .header .container-inner {
     width: 50%;
   }
-  .header input[type="text"] {
-    width: 70%;
-  }
-  .header .btn {
-    width: 15%;
-    cursor: pointer;
-  }
   
+
 }

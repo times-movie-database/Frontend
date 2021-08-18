@@ -18,6 +18,7 @@ export default function Header(props) {
           onClick={redirectToHomeScreen}
           className="header img"
         />
+
         {props.searchBar === "yes" ? (
           <div className="container-inner">
             <SearchBar></SearchBar>

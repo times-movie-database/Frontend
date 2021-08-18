@@ -17,3 +17,19 @@ export function searchMovie(title,genre_id,successCB,errorCB){
     const response=axios.get(URL).then(successCB).catch(errorCB);
     return response;
 }
+export function getAllmovies(successCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/find-all?pageNumber=0"
+    axios.get(URL).then(successCB)
+}
+export function getMovieDetails(movie_id,successCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id;
+    axios.get(URL).then(successCB)
+}
+export function getMovieReviews(movie_id,successCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/review?pageNumber=1";
+    axios.get(URL).then(successCB)
+}
+export function postMovieReview(user_review,movie_id,successCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/"+"review";
+    axios.put(URL,{user_review}).then(successCB)
+}

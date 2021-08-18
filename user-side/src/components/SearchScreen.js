@@ -1,13 +1,14 @@
 import Card from "./Card";
 import "./SearchScreen.css";
 import { useState, useEffect } from "react";
-import { getmovie } from "../Services";
+import { getAllmovies} from "../Services";
 import { getAllGenre} from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
+import SearchBar from "./SearchBar";
 export default function SearchScreen(props) {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    getmovie((response) => setMovies(response.data));
+    getAllmovies((response) => setMovies(response.data));
   }, []);
   const [genreList,setGenreList]=useState([])
    /*get genre list from server*/
@@ -16,7 +17,8 @@ export default function SearchScreen(props) {
       setGenreList(res.data)
   })
   },[])
-  
+
+
   return (
     <div className="search">
       <label htmlFor="genre-search" className="text">Search Result in </label>
@@ -32,6 +34,7 @@ export default function SearchScreen(props) {
                 className="card"
                 title={movie.title}
                 rating={movie.rating}
+                id={movie.id}
               ></Card>
             </ErrorBoundary>
           ))}

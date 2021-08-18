@@ -3,22 +3,26 @@
     margin: 0px;
     padding: 0px;
 }
-
 .movie-form h1{
     color:black;
 }
 
 
 #container{
-    margin: 30px auto;
-    max-width: 500px;
-    padding: 20px;
+    margin: 1.875em auto;
+    max-width: 31.25em;
+    padding: 1.25em;
     background-color: #CFD8DC;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
+@media screen and (max-width: 575px) {
+    #container{
+        margin: auto;
+    }
+}
 
 .movie-form .form-wrap{
-    padding:15px 25px;
+    padding:0.9375em 1.5625em;
     color:#333;
 }
 .movie-form .form-wrap h1,
@@ -26,16 +30,16 @@
     text-align: center;
 }
 .movie-form .form-wrap .form-group{
-    margin-top: 15px;
+    margin-top: 0.9375em;
 }
 .movie-form .form-wrap .form-group input,
 .movie-form .form-wrap .form-group textarea{
     width:100%;
-    padding: 12px;
-    border: #ddd 1px solid;
-    border-radius: 5px;
+    padding: 0.75em;
+    border: #ddd  0.0625em solid;
+    border-radius: 0.3125em;
     resize: none;
-    font-size: 14px;
+    font-size: 0.875em;
     font-family: Arial;
     font-weight: 400;
     font-style: normal;
@@ -56,12 +60,12 @@
 .movie-form .form-wrap .form-group input::placeholder,
 .movie-form .form-wrap .form-group textarea::placeholder{
     color:#888;
-    font-size: 15px;
+    font-size: 0.9375em;
 }
 
 .movie-form .required{
     color: #FF243A;
-    font-size: 20px;
+    font-size:  1.25em;
 }
 .movie-form .form-wrap .btn-center{
    
@@ -112,6 +116,6 @@
 
 .movie-form .warning{
 
-    font-size: 12px;
+    font-size: 0.75em;
     color: #FF243A;
 }

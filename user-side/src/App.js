@@ -36,7 +36,7 @@ function App() {
               <SearchScreen />
             </ErrorBoundary>
           </Route>
-          <Route path="/movie/name">
+          <Route path="/movie/:id">
             <ErrorBoundary>
               < MovieDetails/>
             </ErrorBoundary>

@@ -76,22 +76,23 @@ export default function MovieForm( props ) {
         //     return genre.id;
         // })
         // intialGenre=props.genres;
-        const genreIDs=[];
-        initialMovieState={
-            title: props.title,
-            summary: props.summary,
-            genreList: genreIDs
-        }
-        setCastNameCSV(props.castCSV);
+        // const genreIDs=[];
+        // initialMovieState={
+        //     title: props.title,
+        //     summary: props.summary,
+        //     genreList: genreIDs
+        // }
+        // setCastNameCSV(props.castCSV);
         formHeading="Edit Movie";
     }
     else{
-        initialMovieState = {
-            title: "",
-            summary: "",
-            genreIdList: []
-        }
+        
         formHeading="Add a Movie";
+    }
+    initialMovieState = {
+        title: "",
+        summary: "",
+        genreIdList: []
     }
     const [movie, setMovie] = useState(initialMovieState);
 

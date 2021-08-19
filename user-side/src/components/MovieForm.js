@@ -267,7 +267,7 @@ export default function MovieForm(props) {
                     }, 2000);
                 },
                 (error)=>{
-                    alert('Error');
+                    alert(error);
                 })
             }
             else {

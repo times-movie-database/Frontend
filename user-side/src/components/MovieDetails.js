@@ -13,7 +13,7 @@ import {
   postMovieReview,
   postUserRating,
 } from "../Services";
-import { useLocation } from "react-router-dom";
+import { useLocation,useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 Modal.setAppElement("#root");
@@ -26,10 +26,9 @@ export default function MovieDetails(props) {
   const [movie, setMovie] = useState({});
   const [movieReviews, setMovieReviews] = useState([]);
   const location = useLocation();
-  const { id } = location.state;
-  console.log(pageNumber);
+  const { id } = useParams();
   const redirectToEditMovie = () => {
-    window.location.href = "/movie/add";
+    window.location.href = `/movie/edit/${id}`;
   };
   useEffect(() => {
     getMovieDetails(id, (response) => setMovie(response.data));

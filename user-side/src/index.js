@@ -16,8 +16,11 @@ ReactDOM.render(
     <Router>
       <div>
         <Switch>
-          
-          <Route exact path="/movie/id/edit">
+
+          <Route exact path="/movie/edit/:id">
+            <ErrorBoundary>
+              <Header searchBar="no" addButton="no" />
+            </ErrorBoundary>
           </Route>
 
           <Route exact path="/movie/add">

@@ -9,7 +9,7 @@ export async function getAllGenre( successCB, errorCB ){
     return response;
 }
 export function updateMovieInDB( movieID, movieDetails , successCB, errorCB){
-    axios.put(process.env.REACT_APP_PUT_MOVIE_ENDPOINT+movieID, movieDetails).then(successCB).catch(errorCB);
+     axios.put(process.env.REACT_APP_PUT_MOVIE_ENDPOINT+movieID, movieDetails).then(successCB).catch(errorCB);
 } 
 export function getMovies(keyword,successCB,errorCB){
     const URL="http://localhost:4200/movies"

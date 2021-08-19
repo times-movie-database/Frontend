@@ -21,8 +21,12 @@ function App() {
               <HomeScreen />
             </ErrorBoundary>
           </Route>
-          
-          <Route exact path="/movie/id/edit">
+
+          <Route exact path="/movie/edit/:id">
+            <ErrorBoundary>
+              <MovieForm isEdit={true}/>
+            </ErrorBoundary>
+
           </Route>
 
           <Route exact path="/movie/add">
@@ -38,7 +42,7 @@ function App() {
           </Route>
           <Route path="/movie/:id">
             <ErrorBoundary>
-              < MovieDetails/>
+              < MovieDetails />
             </ErrorBoundary>
           </Route>
 

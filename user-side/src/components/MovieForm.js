@@ -15,8 +15,9 @@ export default function MovieForm(props) {
     //id stores movie id, accessed via parameter of edit url
     const { id } = useParams();
 
-    /*cast name state*/
+    /* last cast name parsed from CSV state*/
     const [castName, setCastName] = useState("");
+    /*comma separated cast name in the cast feild state*/
     const [castNameCSV, setCastNameCSV] = useState("");
 
     /*error states*/
@@ -56,9 +57,10 @@ export default function MovieForm(props) {
 
     const getCsvFromArray = (array) => {
         let csv = "";
-        for (let i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length-1; i++) {
             csv += array[i] + ', '
         }
+        csv+=array[array.length-1];
         return csv;
     }
 

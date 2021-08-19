@@ -104,7 +104,14 @@ export default function MovieForm(props) {
 
     if (props.isEdit) {
         formHeading = "Edit Movie Details";
-        initialGenreTags = intialGenre;
+       // initialGenreTags = intialGenre;
+       initialGenreTags = [{
+           id:1,
+           name:'war'
+       },{
+           id:2,
+           name:'action '
+       }];
         console.log(initialGenreTags);
     }
     else {

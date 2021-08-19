@@ -2,19 +2,19 @@ import './MovieForm.css';
 import { useEffect, useState } from 'react';
 import { useRef } from "react";
 import Select from 'react-select'
-import { getAllGenre, getMovieDetails, sendMovieToDB } from '../Services';
+import { getAllGenre, getMovieDetails, sendMovieToDB, updateMovieInDB } from '../Services';
 import { useParams } from 'react-router-dom';
 
-export default function MovieForm( props ) {
+export default function MovieForm(props) {
 
     const TITLE_MAX = 100;
     const SUMMARY_MAX = 500;
     const CAST_NAME_MAX = 50;
     const dropdownSelectInputRef = useRef();
-    const [intialGenre, setInitialGenre] = useState([]) ; //to keep genre data in drop down
+    const [intialGenre, setInitialGenre] = useState([]); //to keep genre data in drop down
     //id stores movie id, accessed via parameter of edit url
-    const { id }=useParams();
-   
+    const { id } = useParams();
+
     /*cast name state*/
     const [castName, setCastName] = useState("");
     const [castNameCSV, setCastNameCSV] = useState("");
@@ -43,81 +43,81 @@ export default function MovieForm( props ) {
     const [feildRequired, setFeildRequired] = useState(false);
     /*genres*/
     const [genreList, setGenreList] = useState([])
-    
+
     /*movie state*/
 
-    const initialMovieState= {   //to keep intial state of form
+    const initialMovieState = {   //to keep intial state of form
         title: "",
         summary: "",
         genreIdList: []
-    }; 
+    };
     const [movie, setMovie] = useState(initialMovieState);
 
 
-    const getCsvFromArray=( array )=>{
-        let csv="";
-             for( let i=0;i<array.length;i++){
-                csv+=array[i]+', '
-             }
+    const getCsvFromArray = (array) => {
+        let csv = "";
+        for (let i = 0; i < array.length; i++) {
+            csv += array[i] + ', '
+        }
         return csv;
     }
-    
-    
+
+
     let formHeading; //to keep heading of the form
     let initialGenreTags;//to keep initalgenre in dropdown
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(props.isEdit){
+        if (props.isEdit) {
             //if the form is edit form, fill it with the movie details
-            getMovieDetails( id, (response)=>{
+            getMovieDetails(id, (response) => {
                 /*Heading of the form to Edit movie*/
-                formHeading="Edit Movie";
+                formHeading = "Edit Movie";
 
-                const movieDetail=response.data;
-                const movieNewState={
+                const movieDetail = response.data;
+                const movieNewState = {
                     title: movieDetail.title,
-                    summary:movieDetail.summary,
-                    genreIdList: movieDetail.genres.map( (genre) =>{
+                    summary: movieDetail.summary,
+                    genreIdList: movieDetail.genres.map((genre) => {
                         return genre.id
                     })
                 }
-            setMovie(movieNewState);
-            if(movieDetail.title){
-                setTitleError({ ...titleError, fieldEmpty: false })
-            }
-            const castArray=movieDetail.cast.map( (cast)=>{
-                return cast.name
+                setMovie(movieNewState);
+                if (movieDetail.title) {
+                    setTitleError({ ...titleError, fieldEmpty: false })
+                }
+                const castArray = movieDetail.cast.map((cast) => {
+                    return cast.name
+                })
+                const castCSV = getCsvFromArray(castArray);
+                setCastNameCSV(castCSV);
+                setInitialGenre(movieDetail.genres);
+                console.log(intialGenre);
             })
-            const castCSV= getCsvFromArray( castArray );
-            setCastNameCSV(castCSV);
-            setInitialGenre(movieDetail.genres);
-            console.log(intialGenre);
-            })
-            
-        }
-        else{
-           
-        }
-    },[]);  
 
-    if(props.isEdit){
-        formHeading="Edit Movie Details";
-        initialGenreTags=intialGenre;
+        }
+        else {
+
+        }
+    }, []);
+
+    if (props.isEdit) {
+        formHeading = "Edit Movie Details";
+        initialGenreTags = intialGenre;
         console.log(initialGenreTags);
     }
-    else{
-        formHeading="Add a Movie";
-        initialGenreTags=[];
+    else {
+        formHeading = "Add a Movie";
+        initialGenreTags = [];
     }
-    
+
     /*get genre list from server*/
-    if(genreList.length===0){
+    if (genreList.length === 0) {
         getAllGenre().then((res) => {
             setGenreList(res.data);
         })
     }
- 
-    
+
+
     const validateTitle = (title, value) => {
         /*To check if max allowed lenght reached*/
         if (value.length <= TITLE_MAX) {
@@ -140,8 +140,8 @@ export default function MovieForm( props ) {
 
 
 
-   
-    
+
+
 
     const validateSummary = (summary, value) => {
         if (value.length <= SUMMARY_MAX) {
@@ -256,17 +256,34 @@ export default function MovieForm( props ) {
                 genreIdList: movie.genreIdList
             };
             setFeildRequired(false);
-            sendMovieToDB(
-                movieDetails,
-                (res) => {
-                    alert("Movie details saved successfully");
-                    console.log(res.data);
-                    handleReset();
+            if (props.isEdit) {
+                updateMovieInDB(
+                    id,
+                    movieDetails,
+                    (res)=>{
+                    alert('Movie Detail Updated');
+                    setTimeout(() => {
+                        window.location.href = `/movie/${id}`;
+                    }, 2000);
                 },
-                (error) => {
-                    alert(`${error}`);
-                }
-            );
+                (error)=>{
+                    alert('Error');
+                })
+            }
+            else {
+                sendMovieToDB(
+                    movieDetails,
+                    (res) => {
+                        alert("Movie details saved successfully");
+                        console.log(res.data);
+                        handleReset();
+                    },
+                    (error) => {
+                        alert(`${error}`);
+                    }
+                );
+            }
+
         }
 
     }
@@ -305,14 +322,14 @@ export default function MovieForm( props ) {
                     {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
 
                     <div className='form-group'>
-                    <label for='genres' name='genre-dropdown'>
+                        <label for='genres' name='genre-dropdown'>
                             Genres
                         </label>
                         <span className="required">*</span>
                         <Select name='genres' id='genres' isMulti
                             ref={dropdownSelectInputRef}
                             placeholder='Choose relavant genres'
-                            defaultValue={ initialGenreTags}
+                            defaultValue={initialGenreTags}
                             getOptionLabel={option => option.name}
                             getOptionValue={option => option.id}
                             options={genreList}

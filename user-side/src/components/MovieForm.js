@@ -1,8 +1,9 @@
 import './MovieForm.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from "react";
 import Select from 'react-select'
-import { getAllGenre, sendMovieToDB } from '../Services';
+import { getAllGenre, getMovieDetails, sendMovieToDB } from '../Services';
+import { useParams } from 'react-router-dom';
 
 export default function MovieForm( props ) {
 
@@ -10,6 +11,9 @@ export default function MovieForm( props ) {
     const SUMMARY_MAX = 500;
     const CAST_NAME_MAX = 50;
     const dropdownSelectInputRef = useRef();
+    const [intialGenre, setInitialGenre] = useState([]) ; //to keep genre data in drop down
+    //id stores movie id, accessed via parameter of edit url
+    const { id }=useParams();
    
     /*cast name state*/
     const [castName, setCastName] = useState("");
@@ -40,6 +44,69 @@ export default function MovieForm( props ) {
     /*genres*/
     const [genreList, setGenreList] = useState([])
     
+    /*movie state*/
+
+    const initialMovieState= {   //to keep intial state of form
+        title: "",
+        summary: "",
+        genreIdList: []
+    }; 
+    const [movie, setMovie] = useState(initialMovieState);
+
+
+    const getCsvFromArray=( array )=>{
+        let csv="";
+             for( let i=0;i<array.length;i++){
+                csv+=array[i]+', '
+             }
+        return csv;
+    }
+    
+    
+    let formHeading; //to keep heading of the form
+    let initialGenreTags;//to keep initalgenre in dropdown
+    useEffect(()=>{
+
+        if(props.isEdit){
+            //if the form is edit form, fill it with the movie details
+            getMovieDetails( id, (response)=>{
+                /*Heading of the form to Edit movie*/
+                formHeading="Edit Movie";
+
+                const movieDetail=response.data;
+                const movieNewState={
+                    title: movieDetail.title,
+                    summary:movieDetail.summary,
+                    genreIdList: movieDetail.genres.map( (genre) =>{
+                        return genre.id
+                    })
+                }
+            setMovie(movieNewState);
+            const castArray=movieDetail.cast.map( (cast)=>{
+                return cast.name
+            })
+            const castCSV= getCsvFromArray( castArray );
+            setCastNameCSV(castCSV);
+            setInitialGenre(movieDetail.genres);
+            console.log(intialGenre);
+            })
+            
+        }
+        else{
+           
+        }
+    },[]);  
+
+    if(props.isEdit){
+        formHeading="Edit Movie Details";
+        initialGenreTags=intialGenre;
+        console.log(initialGenreTags);
+    }
+    else{
+        formHeading="Add a Movie";
+        initialGenreTags=[];
+    }
+    
     /*get genre list from server*/
     if(genreList.length===0){
         getAllGenre().then((res) => {
@@ -68,33 +135,10 @@ export default function MovieForm( props ) {
 
     }
 
-    let initialMovieState; //to keep intial data in form
-    let intialGenre=[]; //to keep genre data in drop down
-    var formHeading; //to keep heading of the form
-    if(props.isEdit){
-        // const genreIDs=props.genres.map((genre) => {
-        //     return genre.id;
-        // })
-        // intialGenre=props.genres;
-        // const genreIDs=[];
-        // initialMovieState={
-        //     title: props.title,
-        //     summary: props.summary,
-        //     genreList: genreIDs
-        // }
-        // setCastNameCSV(props.castCSV);
-        formHeading="Edit Movie";
-    }
-    else{
-        
-        formHeading="Add a Movie";
-    }
-    initialMovieState = {
-        title: "",
-        summary: "",
-        genreIdList: []
-    }
-    const [movie, setMovie] = useState(initialMovieState);
+
+
+   
+    
 
     const validateSummary = (summary, value) => {
         if (value.length <= SUMMARY_MAX) {
@@ -231,7 +275,7 @@ export default function MovieForm( props ) {
                 <form>
 
                     <div className='form-group'>
-                        <label for='title' name='title'>
+                        <label htmlFor='title' name='title'>
                             Movie Title <span className="required">*</span>
                         </label>
                         <input name='title' id='title' type='text' placeholder='Enter here' value={movie.title} onChange={handleFeildChange}></input><br />
@@ -265,7 +309,7 @@ export default function MovieForm( props ) {
                         <Select name='genres' id='genres' isMulti
                             ref={dropdownSelectInputRef}
                             placeholder='Choose relavant genres'
-                            defaultValue={ intialGenre }
+                            defaultValue={ initialGenreTags}
                             getOptionLabel={option => option.name}
                             getOptionValue={option => option.id}
                             options={genreList}

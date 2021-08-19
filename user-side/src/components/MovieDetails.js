@@ -18,7 +18,7 @@ export default function MovieDetails(props) {
   const location = useLocation();
   const { id } = useParams();
   const redirectToEditMovie = () => {
-    window.location.href = "/movie/add";
+    window.location.href = `/movie/edit/${id}`;
   };
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 export default function Card(props) {
   return (
-    <Link to={{pathname:`/movie/${props.id}`,state:{id:props.id}}} style={{ "textDecoration": "none" }}>
+    <Link to={{pathname:`/movie/${props.id}`}} style={{ "textDecoration": "none" }}>
     <div className={props.className}>
       <div className="sno">{props.count}</div>
       <div className="card-title">

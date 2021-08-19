@@ -6,7 +6,7 @@ import Review from "./Review";
 import "./MovieDetails1.css";
 import Rating from "react-rating";
 import { getMovieDetails, getMovieReviews,postMovieReview } from "../Services";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
@@ -16,7 +16,7 @@ export default function MovieDetails(props) {
   const [movie, setMovie] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
   const location = useLocation();
-  const { id } = location.state;
+  const { id } = useParams();
   const redirectToEditMovie = () => {
     window.location.href = "/movie/add";
   };

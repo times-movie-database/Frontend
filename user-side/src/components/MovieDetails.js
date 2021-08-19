@@ -5,57 +5,82 @@ import AddRating from "./AddRating";
 import Review from "./Review";
 import "./MovieDetails1.css";
 import Rating from "react-rating";
-import { getMovieDetails, getMovieReviews,postMovieReview } from "../Services";
+import Header from "./Header";
+import ErrorBoundary from "./ErrorBoundary";
+import {
+  getMovieDetails,
+  getMovieReviews,
+  postMovieReview,
+  postUserRating,
+} from "../Services";
 import { useLocation } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
   const [rating, setRating] = useState(false);
-  const [userRating, setUserRating] = useState([]);
+  const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState({});
   const [movieReviews, setMovieReviews] = useState([]);
   const location = useLocation();
   const { id } = location.state;
+  console.log(pageNumber);
   const redirectToEditMovie = () => {
     window.location.href = "/movie/add";
   };
-
   useEffect(() => {
     getMovieDetails(id, (response) => setMovie(response.data));
   }, id);
-  // useEffect(()=>
-  // {
-  //   postUserRating(id,response=>{console.log(response.data)})
-  // })
   useEffect(() => {
-    getMovieReviews(id, (response) => setMovieReviews(response.data));
+    getMovieReviews(id, pageNumber, (response) =>
+      setMovieReviews(response.data)
+      
+    );
   });
+  
+  const handleRating = (ratingStar) => {
+    setUserRating(ratingStar);
+  };
+
+  const publishRating = () => {
+    const r = { userRating };
+    postUserRating(id, r, (response) => {
+      console.log(response.data);
+    });
+  };
   let movieRating = movie.rating;
   if (movieRating) {
     movieRating = movieRating.toFixed(1);
   } else {
     movieRating = 0;
   }
+
   //Add a review to the movie
-  const postReview=(event)=>{
-    const string=event.target.value
-    setUserReview(string)
-  }
-  const publishReview=()=>{
-    console.log(userReview)
-    postMovieReview(userReview,id,response=>{console.log(response.data)});
-  }
+  const postReview = (event) => {
+    const string = event.target.value;
+    setUserReview(string);
+  };
+  const publishReview = () => {
+    console.log(userReview);
+    postMovieReview(userReview.userReview, id, (response) => {
+      console.log(response.data);
+    });
+  };
   return (
+    <div>
+      <ErrorBoundary>
+              <Header searchBar="yes" addButton="yes" />
+            </ErrorBoundary>
     <div className="main-container">
       <div className="detail-container">
         <div className="title-and-edit-container">
           <div className="title">
             {movie.title}
-
             <div className="genre-items">
-              <span className="tagged">Action</span>
-              <span className="tagged">Sci-fi</span>
+              <span className="tagged"></span>
             </div>
           </div>
           <span className="edit">
@@ -73,7 +98,7 @@ export default function MovieDetails(props) {
               emptySymbol="fa fa-star"
               fullSymbol="fa fa-star checked"
               readonly={true}
-              fractions={10}
+              fractions={5}
             ></Rating>
             <span className="average">{movieRating}</span>
             <span className="count">({movie.count})</span>
@@ -96,10 +121,16 @@ export default function MovieDetails(props) {
               <div className="details-title">
                 How would you like to rate this Movie?
               </div>
-
-              <AddRating></AddRating>
+              <Rating
+                initialRating={userRating}
+                emptySymbol="fa fa-star"
+                fullSymbol="fa fa-star checked"
+                onChange={(rate) => handleRating(rate)}
+              />
               <div className="modal-submit">
-                <button className="modal-btn">Sumbit</button>
+                <button className="modal-btn" onClick={publishRating}>
+                  Sumbit
+                </button>
               </div>
             </Modal>
           </div>
@@ -121,11 +152,23 @@ export default function MovieDetails(props) {
           <button className="user-reviews">User Reviews</button>
         </div>
         <div className="review-section">
-          {movieReviews.map((movieReview, index) => (
-            <Review timestamp={movieReview.createdAt}>
-              {movieReview.review}
-            </Review>
-          ))}
+          {movieReviews ? (
+            <InfiniteScroll
+              dataLength={5}
+              next={()=>setPageNumber(pageNumber+1)}
+              hasMore={true}
+              loader={<h4>Loading....</h4>}
+              endMessage={<div>No more results to display</div>}
+            >
+              {movieReviews.map((movieReview, index) => (
+                <Review timestamp={movieReview.createdAt}>
+                  {movieReview.review}
+                </Review>
+              ))}
+            </InfiniteScroll>
+          ) : (
+            "No reviews"
+          )}
         </div>
 
         <div className="personal-review">
@@ -153,11 +196,14 @@ export default function MovieDetails(props) {
               ></textarea>
             </div>
             <div className="modal-submit">
-              <button className="modal-btn" onClick={publishReview}>Sumbit</button>
+              <button className="modal-btn" onClick={publishReview}>
+                Sumbit
+              </button>
             </div>
           </Modal>
         </div>
       </div>
+    </div>
     </div>
   );
 }

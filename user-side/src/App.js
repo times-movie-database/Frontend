@@ -31,12 +31,12 @@ function App() {
             </ErrorBoundary>
           </Route>
 
-          <Route path="/search/keyword">
+          <Route path="/search/:keyword">
             <ErrorBoundary>
               <SearchScreen />
             </ErrorBoundary>
           </Route>
-          <Route path="/movie/name">
+          <Route path="/movie/:id">
             <ErrorBoundary>
               < MovieDetails/>
             </ErrorBoundary>

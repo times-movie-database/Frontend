@@ -1,9 +1,10 @@
 import { useState } from "react";
 import './SearchBar.css'
+import { Link } from "react-router-dom";
 export default function SearchBar() {
     const [keyword, setKeyword] = useState([]);
     const handleKeyword = (event) => {
-        setKeyword({keyword,[event.target.name]: event.target.value});
+        setKeyword(event.target.value);
       };
       console.log(keyword);
       const handleSubmit = (event) => {
@@ -13,7 +14,7 @@ export default function SearchBar() {
             
             //searchMovie("",0).then(res=>{setSearchResult(res.data)})
           //console.log(searchResult);
-          window.location.href = "/search/keyword";
+          // window.location.href = "/search/keyword";
     
         }
         else{
@@ -30,9 +31,13 @@ export default function SearchBar() {
               placeholder="Search..."
               onChange={handleKeyword}
             />
-            <button className="btn" onClick={handleSubmit}>
+            
+            <Link to={{pathname:"/search/"+keyword,state:{searchKeyword:keyword}}} style={{ "textDecoration": "none" }} >
+            <button className="btn">
               <i className="fa fa-search"></i>
-            </button>            
+            </button>
+            
+            </Link>            
         </div>
     )
 }

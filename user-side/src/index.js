@@ -26,11 +26,7 @@ ReactDOM.render(
             </ErrorBoundary>
           </Route>
 
-          <Route path="/">
-            <ErrorBoundary>
-              <Header searchBar="yes" addButton="yes" />
-            </ErrorBoundary>
-          </Route>
+          
           
         </Switch>
       </div>

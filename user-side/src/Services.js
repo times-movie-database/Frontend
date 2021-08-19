@@ -11,14 +11,15 @@ export async function getAllGenre( successCB, errorCB ){
 export function updateMovieInDB( movieID, movieDetails , successCB, errorCB){
     axios.put(process.env.REACT_APP_PUT_MOVIE_ENDPOINT+movieID, movieDetails).then(successCB).catch(errorCB);
 } 
-export function getmovie(successCB,l=1000){
+export function getMovies(keyword,successCB,errorCB){
     const URL="http://localhost:4200/movies"
-    axios.get(URL,{params:{_limit:l}}).then(successCB)
+    axios.get(URL).then(successCB).catch(errorCB);
 }
-export function searchMovie(title,genre_id,successCB,errorCB){
-    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/search?title="+title+"&genre="+genre_id; 
-    const response=axios.get(URL).then(successCB).catch(errorCB);
-    return response;
+export function searchMovie(title,genre,pageNumber,successCB,errorCB){
+    
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/search?genre="+genre+"&pageNumber="+pageNumber+"&title="+title; 
+    axios.get(URL).then(successCB).catch(errorCB);
+    
 }
 export function getAllmovies(successCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/find-all?pageNumber=0"
@@ -28,11 +29,28 @@ export function getMovieDetails(movie_id,successCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id;
     axios.get(URL).then(successCB)
 }
-export function getMovieReviews(movie_id,successCB){
-    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/review?pageNumber=1";
+export function getMovieReviews(movie_id,pagenumber,successCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/review?pageNumber="+pagenumber;
     axios.get(URL).then(successCB)
 }
 export function postMovieReview(user_review,movie_id,successCB){
+    const config = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/"+"review";
-    axios.put(URL,{user_review}).then(successCB)
+    axios.post(URL,user_review,config).then(successCB)
+}
+export function postUserRating(user_id,rating,successCB,errorCB){
+    const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+user_id+"/rating";
+    axios.post(URL,rating).then(successCB).catch(errorCB);
+}
+export function getTopTenMovies(genre,successCB,errorCB){
+
+    const URL="https://tmdbnodeapi.herokuapp.com/tmdb/movies/top-ten";
+    if(genre==="All")
+    {
+        axios.get(URL).then(successCB).catch(errorCB);
+    }
+    else{
+        axios.get(URL+"?genre="+genre).then(successCB).catch(errorCB);
+    }
+    
 }

@@ -9,17 +9,15 @@ export default function SearchBar() {
       console.log(keyword);
       const handleSubmit = (event) => {
         event.preventDefault();
-        if(keyword)
+        if(!keyword)
         {
-            
+          alert("Enter movie name");
             //searchMovie("",0).then(res=>{setSearchResult(res.data)})
           //console.log(searchResult);
           // window.location.href = "/search/keyword";
     
         }
-        else{
-          alert("select either a movie name or genre");
-        }
+        
       }
     return (
         <div className='search-bar'>
@@ -32,12 +30,12 @@ export default function SearchBar() {
               onChange={handleKeyword}
             />
             
-            <Link to={{pathname:"/search/"+keyword,state:{searchKeyword:keyword}}} style={{ "textDecoration": "none" }} >
+            
+            <Link to={{pathname:"/search/"+keyword,state:{searchKeyword:keyword}}} style={{ "textDecoration": "none" }}>
             <button className="btn">
               <i className="fa fa-search"></i>
             </button>
-            
-            </Link>            
+            </Link>           
         </div>
     )
 }

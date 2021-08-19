@@ -82,6 +82,9 @@ export default function MovieForm( props ) {
                     })
                 }
             setMovie(movieNewState);
+            if(movieDetail.title){
+                setTitleError({ ...titleError, fieldEmpty: false })
+            }
             const castArray=movieDetail.cast.map( (cast)=>{
                 return cast.name
             })

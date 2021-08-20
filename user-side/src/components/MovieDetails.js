@@ -46,8 +46,12 @@ export default function MovieDetails(props) {
 
   const publishRating = () => {
     const r = { userRating };
-    postUserRating(id, r, (response) => {
+    console.log(r);
+    console.log(typeof(r.userRating));
+    postUserRating(id, r.userRating, (response) => {
       console.log(response.data);
+    }, (error)=>{
+      console.log(error.response.data);
     });
   };
   let movieRating = movie.rating;
@@ -64,8 +68,11 @@ export default function MovieDetails(props) {
   };
   const publishReview = () => {
     console.log(userReview);
-    postMovieReview(userReview.userReview, id, (response) => {
+    console.log(typeof(userReview));
+    postMovieReview(userReview, id, (response) => {
       console.log(response.data);
+    },(error)=>{
+      console.log(error.response.data);
     });
   };
   return (

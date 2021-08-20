@@ -34,12 +34,12 @@ export function getMovieReviews(movie_id,pagenumber,successCB){
     axios.get(URL).then(successCB)
 }
 export function postMovieReview(user_review,movie_id,successCB,errorCB){
-    const config = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
+    const config = { headers: {'Content-Type': "text/plain"} };
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/"+"review";
     axios.post(URL,user_review,config).then(successCB).catch(errorCB);
 }
 export function postUserRating(user_id,rating,successCB,errorCB){
-    const config = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
+    const config = { headers: {'Content-Type': 'application/json'} };
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+user_id+"/rating";
     axios.post(URL,rating,config).then(successCB).catch(errorCB);
 }

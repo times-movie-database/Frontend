@@ -86,7 +86,7 @@ export default function MovieDetails(props) {
           <div className="title">
             {movie.title}
             <div className="genre-items">
-              <span className="tagged"></span>
+              {movie.genres?movie.genres.map((gen)=><span className="tagged">{gen.name}</span>):null}
             </div>
           </div>
           <span className="edit">
@@ -146,8 +146,7 @@ export default function MovieDetails(props) {
           Summary : {movie.summary}
           <div className="cast-items">
             <div className="cast-title">
-              Cast:<span className="tagged">ABC</span>
-              <span className="tagged">ABC</span>
+              Cast:{movie.cast?movie.cast.map((actor)=><span className="tagged ">{actor.name}</span>):null}
             </div>
           </div>
         </div>

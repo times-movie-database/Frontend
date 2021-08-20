@@ -2,6 +2,12 @@ import "./Card.css";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 export default function Card(props) {
+  let movieRating = props.rating;
+  if (movieRating) {
+    movieRating = movieRating.toFixed(1);
+  } else {
+    movieRating = 0;
+  }
   return (
     <Link to={{pathname:`/movie/${props.id}`}} style={{ "textDecoration": "none" }}>
     <div className={props.className}>
@@ -16,7 +22,7 @@ export default function Card(props) {
           fullSymbol="fa fa-star checked"
           readonly={true}
           fractions={10}
-        ></Rating>{" "}
+        ></Rating>{" "}<div style={{fontWeight:'bold'}}>{movieRating}/5</div>
         
       </div>
     </div>

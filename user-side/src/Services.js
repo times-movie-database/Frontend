@@ -33,14 +33,15 @@ export function getMovieReviews(movie_id,pagenumber,successCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/review?pageNumber="+pagenumber;
     axios.get(URL).then(successCB)
 }
-export function postMovieReview(user_review,movie_id,successCB){
+export function postMovieReview(user_review,movie_id,successCB,errorCB){
     const config = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/"+"review";
-    axios.post(URL,user_review,config).then(successCB)
+    axios.post(URL,user_review,config).then(successCB).catch(errorCB);
 }
 export function postUserRating(user_id,rating,successCB,errorCB){
+    const config = { headers: {'Content-Type': 'application/x-www-form-urlencoded'} };
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+user_id+"/rating";
-    axios.post(URL,rating).then(successCB).catch(errorCB);
+    axios.post(URL,rating,config).then(successCB).catch(errorCB);
 }
 export function getTopTenMovies(genre,successCB,errorCB){
 

@@ -27,6 +27,7 @@ export default function SearchBar() {
               value={keyword.value}
               placeholder="Search..."
               onChange={handleKeyword}
+              maxLength='100'
             />
             
             

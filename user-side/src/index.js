@@ -28,9 +28,16 @@ ReactDOM.render(
               <Header searchBar="no" addButton="no" />
             </ErrorBoundary>
           </Route>
+          <Route exact path="/search">
+           
+          </Route>
 
-          
-          
+          <Route exact path="/search/:searchKeyword">
+           
+          </Route>
+
+
+
         </Switch>
       </div>
     </Router>

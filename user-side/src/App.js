@@ -2,6 +2,7 @@ import MovieForm from './components/MovieForm';
 import HomeScreen from './components/HomeScreen';
 import SearchScreen from './components/SearchScreen';
 import ErrorBoundary from './components/ErrorBoundary'
+import Header from './components/Header';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -9,6 +10,7 @@ import {
   Route,
 } from "react-router-dom";
 import MovieDetails from './components/MovieDetails';
+import EmptySearchScreen from './components/EmptySearchScreen';
 
 function App() {
   return (
@@ -34,8 +36,13 @@ function App() {
               <MovieForm />
             </ErrorBoundary>
           </Route>
-
-          <Route path="/search/:keyword">
+          <Route exact path="/search/">
+            <ErrorBoundary>
+            <Header searchBar="yes" addButton="yes" />
+            <EmptySearchScreen/>
+            </ErrorBoundary>
+          </Route>
+          <Route exact path="/search/:searchKeyword">
             <ErrorBoundary>
               <SearchScreen />
             </ErrorBoundary>

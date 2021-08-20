@@ -68,6 +68,13 @@ export default function MovieDetails(props) {
       console.log(response.data);
     });
   };
+  const getReviews=()=>
+  {
+    getMovieReviews(id, pageNumber, (response) =>
+      setMovieReviews(response.data)
+      
+    );
+  }
   return (
     <div>
       <ErrorBoundary>
@@ -154,8 +161,8 @@ export default function MovieDetails(props) {
           {movieReviews ? (
             <InfiniteScroll
               dataLength={5}
-              next={()=>setPageNumber(pageNumber+1)}
-              hasMore={true}
+              next={getReviews}
+              hasMore={false}
               loader={<h4>Loading....</h4>}
               endMessage={<div>No more results to display</div>}
             >

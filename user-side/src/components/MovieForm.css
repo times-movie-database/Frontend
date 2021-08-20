@@ -15,11 +15,6 @@
     background-color: #CFD8DC;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
-@media screen and (max-width: 575px) {
-    #container{
-        margin: auto;
-    }
-}
 
 .movie-form .form-wrap{
     padding:0.9375em 1.5625em;
@@ -118,4 +113,14 @@
 
     font-size: 0.75em;
     color: #FF243A;
+}
+
+@media screen and (max-width: 575px) {
+    #container{
+        margin: auto;
+    }
+    .movie-form .form-wrap .btn{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background: #80D8FF ;
+    }
 }

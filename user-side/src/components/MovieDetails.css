@@ -93,6 +93,7 @@
     }
     .summary-item {
         padding-top: 1em;
+        display: inline-block;
     }
     .personal-rating {
         text-align: right;

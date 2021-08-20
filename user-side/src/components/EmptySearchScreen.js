@@ -10,7 +10,7 @@ export default function EmptySearchScreen(){
     return(
         <div class="article" style={style}>
             <h3>Oops! Looks like you left the search bar empty !!</h3>
-    <p>Search movies by typing the movie title in the search box above.</p>
+    <p>Search movies by typing the movie title in the search bar above.</p>
     <p>Or, check out TMDb users’ <a href="/">Top 10 Rated Movies</a> .</p>
         </div>
     )

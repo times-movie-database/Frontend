@@ -222,7 +222,7 @@ export default function MovieDetails(props) {
                 <textarea
                   className="moviedetails"
                   placeholder="Write review..."
-                  style={{backgroundColor:'#eee'}}              
+                  style={{backgroundColor:'#f7f7f7'}}              
                   onChange={postReview}
                   value={userReview.value}
                   name="userReview"

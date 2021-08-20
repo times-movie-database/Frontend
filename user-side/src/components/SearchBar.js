@@ -6,7 +6,6 @@ export default function SearchBar() {
     const handleKeyword = (event) => {
         setKeyword(event.target.value);
       };
-      console.log(keyword);
       const handleSubmit = (event) => {
         event.preventDefault();
         if(!keyword)

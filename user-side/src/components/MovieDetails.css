@@ -151,7 +151,12 @@
     padding-top: 1em;
     text-align: justify;
     min-height: 40vh;
+    display: block;
     max-width: 700px;
+}
+.summary-wrap{
+    word-wrap: break-word;
+    max-width: 200px;
 }
 
 .cast-items {
@@ -190,6 +195,9 @@
     font-weight: bold;
     color:#2962FF;
 
+ }
+ .no-reviews{
+     font-weight: bold;
  }
  .count{
     padding: 4px; 

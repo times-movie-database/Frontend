@@ -165,7 +165,7 @@ export default function MovieDetails(props) {
           </div>
 
           <div className="summary-item">
-            Summary : {movie.summary}
+            Summary : <div className="summary-wrap">{movie.summary}</div>
             <div className="cast-items">
               <div className="cast-title">
                 Cast:
@@ -188,7 +188,7 @@ export default function MovieDetails(props) {
               <InfiniteScroll
                 dataLength={5}
                 next={()=>setPageNumber(pageNumber+1)}
-                hasMore={true}
+                hasMore={userReview}
                 loader={<h4>Loading....</h4>}
                 endMessage={<div>No more results to display</div>}
               >
@@ -198,9 +198,9 @@ export default function MovieDetails(props) {
                   </Review>
                 ))}
               </InfiniteScroll>
-            ) : (
-              "No reviews"
-            )}
+             ) : 
+              <div className="no-reviews">No reviews</div>
+}
           </div>
 
           <div className="personal-review">

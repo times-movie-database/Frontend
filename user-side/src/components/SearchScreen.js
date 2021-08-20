@@ -57,7 +57,7 @@ export default function SearchScreen(props) {
           <div id="container">
             {movies ?
               <div className="searchgrid">
-                <InfiniteScroll dataLength={20} next={() => (pageNumber + 1)}>
+                
                   {movies.map((movie, index) => (
                     <ErrorBoundary>
                       <Card
@@ -70,7 +70,7 @@ export default function SearchScreen(props) {
                     </ErrorBoundary>
                   ))}
 
-                </InfiniteScroll></div> : <div className="show-result">No Result Found</div>}
+                </div> : <div className="show-result">No Result Found</div>}
           </div>
         </div>}
     </div>

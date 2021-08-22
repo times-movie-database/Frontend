@@ -75,6 +75,7 @@ export default function SearchScreen(props) {
               <div className="searchgrid">
                 <ErrorBoundary>
                 <InfiniteScroll
+                  className="searchgrid"
                  dataLength={movies.length}
                  next={fetchMoremovies}
                  hasMore={hasMoreMovies}

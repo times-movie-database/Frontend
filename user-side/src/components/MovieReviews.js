@@ -36,7 +36,7 @@ export default function MovieReviews(props) {
   return (
         <div className="review-section">
             {movieReviews ? (
-              <InfiniteScroll
+              <InfiniteScroll className={props.className}
                 dataLength={movieReviews.length}
                 next={fetchMorereviews}
                 hasMore={hasMore}

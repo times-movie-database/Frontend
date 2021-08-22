@@ -171,7 +171,7 @@ export default function MovieDetails(props) {
             <button className="user-reviews">User Reviews</button>
           </div>
           <div className="review-section">
-            <MovieReviews id={id}></MovieReviews>
+            <MovieReviews id={id} className="review-section"></MovieReviews>
 
           </div>
 

@@ -6,7 +6,7 @@
     padding:1em;
     overflow: auto;
     font-weight: none;
-    max-height: 200px; 
+    min-height: 20vh; 
 }
 .review::-webkit-scrollbar {
     display: none;

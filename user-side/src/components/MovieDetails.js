@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import "./AddReview.css";
 import Modal from "react-modal";
-import AddRating from "./AddRating";
-import Review from "./Review";
 import "./MovieDetails1.css";
 import Rating from "react-rating";
 import Header from "./Header";
+import MovieReviews from "./MovieReviews";
 import ErrorBoundary from "./ErrorBoundary";
 import {
   getMovieDetails,
@@ -14,17 +13,17 @@ import {
   postUserRating,
 } from "../Services";
 import { useLocation, useParams } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [movieReviews, setMovieReviews] = useState([]);
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
   const [movie, setMovie] = useState({});
-  const [movieReviews, setMovieReviews] = useState([]);
+  
   const location = useLocation();
   const { id } = useParams();
   const redirectToEditMovie = () => {
@@ -32,21 +31,14 @@ export default function MovieDetails(props) {
   };
   useEffect(() => {
     getMovieDetails(id, (response) => setMovie(response.data));
-  }, id);
-  useEffect(() => {
-    getMovieReviews(id, pageNumber, (response) =>
-      setMovieReviews(response.data)
-    );
-  });
-
+  }, [id]);
+ 
   const handleRating = (ratingStar) => {
     setUserRating(ratingStar);
   };
 
   const publishRating = () => {
     const r = { userRating };
-    console.log(r);
-    console.log(typeof r.userRating);
     postUserRating(
       id,
       r.userRating,
@@ -84,12 +76,7 @@ export default function MovieDetails(props) {
       }
     );
   };
-  useEffect(() => {
-    getMovieReviews(id, pageNumber, (response) =>
-      setMovieReviews(response.data)
-    );
-  }, [userReview]);
-  const getReviews = () => {};
+  
   return (
     <div>
       <ErrorBoundary>
@@ -184,23 +171,8 @@ export default function MovieDetails(props) {
             <button className="user-reviews">User Reviews</button>
           </div>
           <div className="review-section">
-            {movieReviews ? (
-              <InfiniteScroll
-                dataLength={5}
-                next={()=>setPageNumber(pageNumber+1)}
-                hasMore={userReview}
-                loader={<h4>Loading....</h4>}
-                endMessage={<div>No more results to display</div>}
-              >
-                {movieReviews.map((movieReview, index) => (
-                  <Review timestamp={movieReview.createdAt}>
-                    {movieReview.review}
-                  </Review>
-                ))}
-              </InfiniteScroll>
-             ) : 
-              <div className="no-reviews">No reviews</div>
-}
+            <MovieReviews id={id}></MovieReviews>
+
           </div>
 
           <div className="personal-review">

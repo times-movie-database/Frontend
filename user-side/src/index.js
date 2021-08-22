@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import ErrorBoundary from './components/ErrorBoundary';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -35,7 +36,6 @@ ReactDOM.render(
           <Route exact path="/search/:searchKeyword">
            
           </Route>
-
 
 
         </Switch>

@@ -220,7 +220,7 @@
 
 .review-section {
     display: grid;
-    grid-row-gap: 1em;
+    grid-row-gap: 3em;
     grid-template-columns: auto;
     margin-bottom: 20vh;
     padding: 10px 10px;

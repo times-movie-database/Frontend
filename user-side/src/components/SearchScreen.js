@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 import { searchMovie } from "../Services";
 import { getAllGenre } from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
-import SearchBar from "./SearchBar";
+import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header";
 import EmptySearchScreen from "./EmptySearchScreen";
 export default function SearchScreen(props) {
+  const [pageNumberMovies, setPageNumberMovies] = useState(1);
+  const [hasMoreMovies,setHasMoreMovies]=useState(true);
   const [movies, setMovies] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('All');
-  const [pageNumber, setPageNumber] = useState(0);
-  const location = useLocation();
   const { searchKeyword } = useParams();
 
   const isSearchKeywordEmpty = () => {
@@ -32,12 +32,27 @@ export default function SearchScreen(props) {
   }
   const handleGenre = (event) => {
     setSelectedGenre(event.target.value);
-    setPageNumber(0);
   }
   useEffect(() => {
-    searchMovie(searchKeyword, selectedGenre, pageNumber, (response) => setMovies(response.data));
-  }, [searchKeyword, selectedGenre, pageNumber]);
+    searchMovie(searchKeyword, selectedGenre, 0, (response) => setMovies(response.data));
+  }, [searchKeyword, selectedGenre]);
 
+  const fetchmoviedata=async ()=>{
+    const URL=await axios.get("https://salty-hollows-74392.herokuapp.com/tmdb/movies/search?genre="+selectedGenre+"&pageNumber="+pageNumberMovies+"&title="+searchKeyword);
+    return URL.data;
+  }
+  const fetchMoremovies=async ()=>
+  {
+    const new_movies=await fetchmoviedata();
+    setMovies([...movies,...new_movies]);
+    console.log(new_movies);
+    if (new_movies.length===0 || new_movies.length<20){
+        setHasMoreMovies(false)
+      }
+      
+      setPageNumberMovies(pageNumberMovies+1) 
+  }
+  
   return (
 
     <div>
@@ -57,9 +72,17 @@ export default function SearchScreen(props) {
           <div id="container">
             {movies ?
               <div className="searchgrid">
-                
+                <ErrorBoundary>
+                <InfiniteScroll
+                 dataLength={movies.length}
+                 next={fetchMoremovies}
+                 hasMore={hasMoreMovies}
+                 loader={<h4>Loading....</h4>}
+                 endMessage={<div>No more results to display</div>}
+                 >
                   {movies.map((movie, index) => (
-                    <ErrorBoundary>
+                    
+                      
                       <Card
                         className="card"
                         title={movie.title}
@@ -67,8 +90,9 @@ export default function SearchScreen(props) {
                         id={movie.id}
                         key={index}
                       ></Card>
-                    </ErrorBoundary>
-                  ))}
+                      
+                  ))}</InfiniteScroll>
+                  </ErrorBoundary>
 
                 </div> : <div className="show-result">No Result Found</div>}
           </div>

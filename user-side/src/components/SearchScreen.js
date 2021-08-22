@@ -1,6 +1,5 @@
-import Card from "./Card";
 import "./SearchScreen.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect,lazy,Suspense } from "react";
 import { searchMovie } from "../Services";
 import { getAllGenre } from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
@@ -9,6 +8,7 @@ import { useLocation, useParams } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header";
 import EmptySearchScreen from "./EmptySearchScreen";
+const Card=lazy(()=>import ('./Card'));
 export default function SearchScreen(props) {
   const [pageNumberMovies, setPageNumberMovies] = useState(1);
   const [hasMoreMovies,setHasMoreMovies]=useState(true);
@@ -69,6 +69,7 @@ export default function SearchScreen(props) {
             <option value='All'>All</option>
             {genreList.map((genre) => <option className="opt" key={genre.id} value={genre.name}>{genre.name}</option>)}
           </select>
+          <Suspense fallback={<h1>Loading....</h1>}>
           <div id="container">
             {movies ?
               <div className="searchgrid">
@@ -95,7 +96,7 @@ export default function SearchScreen(props) {
                   </ErrorBoundary>
 
                 </div> : <div className="show-result">No Result Found</div>}
-          </div>
+          </div></Suspense>
         </div>}
     </div>
   );

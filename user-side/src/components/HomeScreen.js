@@ -1,10 +1,10 @@
-import Card from "./Card.js";
-import { useState,useEffect } from "react";
+import { useState,useEffect,lazy,Suspense } from "react";
 import './HomeScreen.css';
 import { getTopTenMovies } from '../Services';
 import ErrorBoundary from "./ErrorBoundary.js";
 import Header from "./Header.js";
 import { getAllGenre} from '../Services';
+const Card=lazy(()=>import ('./Card'));
 export default function HomeScreen(){
     const [movies,setMovies]=useState([]);
     const [genreList,setGenreList]=useState([]);
@@ -36,10 +36,10 @@ export default function HomeScreen(){
             {genreList.map((genre)=><option key={genre.id} value={genre.name}>{genre.name}</option>)}
         </select>
             </div>
-        <div className='grid'>
+        <div className='grid'><Suspense fallback={<h1>Loading....</h1>}>
         {movies.map((movie,index)=>
         <ErrorBoundary><Card id={movie.id}className="card" title={movie.title} rating={movie.rating} key={index}></Card></ErrorBoundary>)}
-        </div>
+        </Suspense></div>
         </div>
         </div>
         

@@ -4,6 +4,7 @@
 }
 .searchgrid {
   display: grid;
+  width: 100%;
   margin: 2em auto;
   grid-row-gap: 3em;
   grid-column-gap: 1em;
@@ -19,7 +20,7 @@
   
 }
 .search #container {
-  max-width: 1000px;
+  max-width: 100%;
   text-align: right;
   background-color: transparent;
   box-shadow: none;
@@ -40,15 +41,15 @@
 @media screen and (max-width: 768px) {
   .searchgrid {
     display: grid;
-    max-width: 200px;
     grid-row-gap: 1em;
     grid-template-columns: auto;
   }
   .search #container {
-    max-width: 12.5em;
     text-align: center;
     background-color: transparent;
     box-shadow: none;
+    padding: 0em;
+    max-width: 95%;
   }
   
   .search .text {

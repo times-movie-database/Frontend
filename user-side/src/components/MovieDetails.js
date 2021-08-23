@@ -40,10 +40,12 @@ export default function MovieDetails(props) {
       id,
       r.userRating,
       (response) => {
-        console.log(response.data);
+        alert("Added Rating");
+        setRating(false);
       },
       (error) => {
-        console.log(error.response.data);
+        alert(error);
+        
       }
     );
   };
@@ -60,16 +62,17 @@ export default function MovieDetails(props) {
     setUserReview(string);
   };
   const publishReview = () => {
-    console.log(userReview);
-    console.log(typeof userReview);
     postMovieReview(
       userReview,
       id,
       (response) => {
         console.log(response.data);
+        setReview(false);
+        alert("Review Submitted")
       },
       (error) => {
         console.log(error.response.data);
+        alert(error);
       }
     );
   };
@@ -148,20 +151,20 @@ export default function MovieDetails(props) {
               </Modal>
             </div>
           </div>
-
+          Summary :
           <div className="summary-item">
-            Summary : <div className="summary-wrap">{movie.summary}</div>
-            <div className="cast-items">
-              <div className="cast-title">
-                Cast:
-                {movie.cast
+             <div className="summary-wrap">{movie.summary}</div>
+             <div className="cast-items">
+              <span className="cast-title">
+                Cast:</span> {movie.cast
                   ? movie.cast.map((actor) => (
                       <span className="tagged ">{actor.name}</span>
                     ))
-                  : null}
-              </div>
-            </div>
+                    : null}
+              
+            </div>  
           </div>
+          
         </div>
 
         <div className="review-container">

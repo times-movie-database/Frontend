@@ -6,6 +6,7 @@
     padding:1em;
     overflow: auto;
     font-weight: none;
+    min-width: 50%;
     min-height: 20vh; 
 }
 .review::-webkit-scrollbar {
@@ -29,5 +30,5 @@
     text-align: justify;
 }
 .read-more{
-    font-weight: bolder;
+    color:#2962FF;
 }

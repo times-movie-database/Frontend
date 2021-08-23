@@ -8,23 +8,20 @@ import MovieReviews from "./MovieReviews";
 import ErrorBoundary from "./ErrorBoundary";
 import {
   getMovieDetails,
-  getMovieReviews,
   postMovieReview,
   postUserRating,
 } from "../Services";
 import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
 
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
-  const [movieReviews, setMovieReviews] = useState([]);
+  
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
   const [movie, setMovie] = useState({});
   
-  const location = useLocation();
   const { id } = useParams();
   const redirectToEditMovie = () => {
     window.location.href = `/movie/edit/${id}`;

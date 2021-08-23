@@ -117,6 +117,8 @@
     min-height: 40vh;
     padding-top: 1em;
     max-width: 700px;
+    
+    word-wrap: break-word
 }
 
 .cast-items {

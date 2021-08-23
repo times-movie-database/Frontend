@@ -24,10 +24,14 @@
   font-size: larger;
 }
 @media screen and (max-width: 768px) {
+
+  #container1{
+     max-width: 95%;
+  }
   .grid {
     display: grid;
     grid-row-gap: 1em;
-    max-width: 200px;
+    max-width: 100%;
     grid-template-columns: auto;
   }
   .genre-menu {
@@ -37,5 +41,8 @@
   }
   #container1 {
     margin: 3em auto;
+  }
+  .card{
+    width:100% !important;
   }
 }

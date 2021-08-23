@@ -106,10 +106,12 @@
 }
 
 .genre-items {
-    display: flex;
+    /* display: flex; */
+    font-size: 1em;
+    font-weight: none;
+    text-transform: capitalize;
+    
     min-height: 10vh;
-    margin-top: 10px;
-    font-size: 16px;
 }
 
 .rating-container {

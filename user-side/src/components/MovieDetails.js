@@ -87,13 +87,6 @@ export default function MovieDetails(props) {
           <div className="title-and-edit-container">
             <div className="title">
               {movie.title}
-              <div className="genre-items">
-                {movie.genres
-                  ? movie.genres.map((gen) => (
-                      <span className="tagged">{gen.name}</span>
-                    ))
-                  : null}
-              </div>
             </div>
             <span className="edit">
               <button
@@ -102,7 +95,13 @@ export default function MovieDetails(props) {
               ></button>
             </span>
           </div>
-
+          <div className="genre-items">
+                {movie.genres
+                  ? movie.genres.map((gen) => (
+                      <span className="tagged">{gen.name}</span>
+                    ))
+                  : null}
+              </div>
           <div className="rating-container">
             <div className="stars">
               <Rating

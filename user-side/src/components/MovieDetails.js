@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./AddReview.css";
 import Modal from "react-modal";
-import "./MovieDetails1.css";
+import "./MovieDetails.css";
 import Rating from "react-rating";
 import Header from "./Header";
 import MovieReviews from "./MovieReviews";

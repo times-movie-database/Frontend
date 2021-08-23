@@ -11,7 +11,7 @@ export default function MovieForm(props) {
     const SUMMARY_MAX = 500;
     const CAST_NAME_MAX = 50;
     const dropdownSelectInputRef = useRef();
-    const [intialGenre, setInitialGenre] = useState([]); //to keep genre data in drop down
+    const [initialGenre, setInitialGenre] = useState([]); //to keep genre data in drop down
     //id stores movie id, accessed via parameter of edit url
     const { id } = useParams();
 
@@ -66,7 +66,6 @@ export default function MovieForm(props) {
 
 
     let formHeading; //to keep heading of the form
-    let initialGenreTags;//to keep initalgenre in dropdown
     useEffect(() => {
 
         if (props.isEdit) {
@@ -93,30 +92,23 @@ export default function MovieForm(props) {
                 const castCSV = getCsvFromArray(castArray);
                 setCastNameCSV(castCSV);
                 setInitialGenre(movieDetail.genres);
-                console.log(intialGenre);
             })
-
         }
         else {
 
         }
     }, []);
 
+    //updates the value of dropsown as soon as it detects a change in state of initial genre
+    useEffect(()=>{
+        dropdownSelectInputRef.current.select.setValue(initialGenre);
+    },[initialGenre])
+
     if (props.isEdit) {
         formHeading = "Edit Movie Details";
-       // initialGenreTags = intialGenre;
-       initialGenreTags = [{
-           id:1,
-           name:'war'
-       },{
-           id:2,
-           name:'action '
-       }];
-        console.log(initialGenreTags);
     }
     else {
         formHeading = "Add a Movie";
-        initialGenreTags = [];
     }
 
     /*get genre list from server*/
@@ -338,7 +330,7 @@ export default function MovieForm(props) {
                         <Select name='genres' id='genres' isMulti
                             ref={dropdownSelectInputRef}
                             placeholder='Choose relavant genres'
-                            defaultValue={initialGenreTags}
+                            defaultValue={initialGenre}
                             getOptionLabel={option => option.name}
                             getOptionValue={option => option.id}
                             options={genreList}

@@ -8,6 +8,9 @@
     text-align: center;
     padding-bottom: 1em;
 }
+.center-rating{
+    text-align: center;
+}
 .tagged{
     color: white;
     background-color:#FDD835;
@@ -309,6 +312,42 @@
         text-align: center;
         left:0;
     }
+    .popup-rating{
+        position: relative;
+        margin: auto auto;
+        max-width: 60%;
+        max-height: auto;
+        text-align: justify;
+        /* padding-bottom: 2em; */
+        
+    }
+        
+    .popup-review{
+        position: relative;
+        margin: 30px auto;
+        max-width:70%;
+        max-height: 60vh; 
+        align-items: center;
+        background-color:white;
+        border:1px solid black;
+    
+    }
+    .popup-review textarea{
+        width:80%;
+        /* margin: auto 8px;
+        padding: 12px; */
+        max-height: 20vh;
+        border: #ddd 1px solid;
+        border-radius: 5px;
+        resize: none;
+        margin-bottom: 3em;
+        font-size: 14px;
+        font-family: Arial;
+        text-align: center;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: normal;
+        text-transform: none;}
 }
 
 

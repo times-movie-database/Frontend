@@ -28,7 +28,7 @@ export default function MovieDetails(props) {
   };
   useEffect(() => {
     getMovieDetails(id, (response) => setMovie(response.data));
-  }, [id]);
+  }, [id,rating]);
  
   const handleRating = (ratingStar) => {
     setUserRating(ratingStar);
@@ -134,6 +134,7 @@ export default function MovieDetails(props) {
                   How would you like to rate this Movie?
                 </div>
                 <Rating
+                  className="center-rating"
                   initialRating={userRating}
                   emptySymbol="fa fa-star"
                   fullSymbol="fa fa-star checked"

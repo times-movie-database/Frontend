@@ -1,18 +1,15 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+*{
+    box-sizing: border-box;
+}
 .details-title{
-    color:white;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
     text-align: center;
-    
+    padding-bottom: 1em;
 }
-
-
-.rate-this-star{
-    /* border:2px solid #2962FF; */
-    color:#2962FF;
-    font-weight: bolder;
-    font-size: 1.5em;
+.center-rating{
+    text-align: center;
 }
 .tagged{
     color: white;
@@ -22,7 +19,6 @@
     margin-right:4px ;
     max-height: 26px;
 
-
 }
 .add{
     cursor: pointer;
@@ -30,8 +26,19 @@
     font-weight: bolder;
     font-size: large;
 }
+.modal-submit{
+    padding-top: 4em;
+    text-align: center;
+    left:0;
+}
+.modal-btn{
+    background-color: #FDD835;
+    color: #fff;
+    border-radius:5px;
+    font-size:1em;
+}
 .close-btn{
-    color:white;
+    /* color:white; */
     font-size: x-large;
     font-weight: bold;
     background-color: transparent;
@@ -44,66 +51,27 @@
     text-align: right;
 
 }
-.edit-btn{
+.rate-this-star{
+    /* border:2px solid #2962FF; */
+    color:#2962FF;
+    font-weight: bolder;
     font-size: 1.5em;
-    border: none;
-    background-color: transparent;   
+}
+.user-reviews{
+    color: #fff;
+    background-color: #666666;
+    padding:5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.edit-btn{
+    font-size: 1em;
+    color: white;
+    border-radius: 0.25em;
+    background-color: #666666;   
     cursor: pointer;
 }
-/* ********************************************************************************************************** */
 
-
-*{
-    box-sizing: border-box;
-}
-@media screen and ( max-width : 768px){
-    .main-container{
-        flex-direction: column;
-        padding: 1.5em;
-        padding-top: 2em;
-    }
-    .add{
-        font-size: small;
-    }
-
-    .review-container .personal-review{
-        order:1;
-        margin-bottom: 15px;
-    }
-    .review-container .review-section{
-        order:2;
-        margin-bottom: 0;
-    }
-    .average{
-        padding:1em;
-        padding-right: 0;
-        font-weight: bold;
-        color:#2962FF;
-        text-align: left;
-    
-     }
-     .count{
-        padding: 2px; 
-        font-size: small;
-        font-style: italic;
-     }
-     .stars {
-        flex: 2;
-        font-size: 0.5em;
-    }
-    .summary-item {
-        padding-top: 1em;
-        display: inline-block;
-    }
-    .personal-rating {
-        text-align: right;
-    }
-    .edit{
-        font-size: 40px;
-        padding-right: none;
-        
-    }
-}
 .review-heading{
     font-weight: bold;
     text-align: center;
@@ -129,7 +97,7 @@
     
 }
 .cast-title{
-    color: #2962FF;
+    /* color: #2962FF; */
     font-weight: bold;
     font-size: 1em;
 }
@@ -148,17 +116,12 @@
 }
 
 .summary-item {
-    padding-top: 1em;
     text-align: justify;
     min-height: 40vh;
-    overflow: scroll;
-    display: block;
+    padding-top: 1em;
     max-width: 700px;
-}
-
-.summary-wrap{
-    word-wrap: break-word;
-    max-width: 200px;
+    
+    word-wrap: break-word
 }
 
 .cast-items {
@@ -170,7 +133,7 @@
 .title {
     flex: 10;
     font-size: 2em;
-    color: #00796b;
+    /* color: #00796b; */
     font-size:xx-large;
     text-transform: uppercase;
     font-weight: bold;
@@ -198,23 +161,27 @@
     color:#2962FF;
 
  }
- .no-reviews{
-     font-weight: bold;
- }
  .count{
     padding: 4px; 
     font-size: medium;
     font-style: italic;
  }
 .personal-rating {
-    text-align: center;
+    padding-left: 2em;
+    text-align: right;
     flex: 3;
 }
-
+.no-reviews{
+    padding-top: 2em;
+    font-weight: bold;
+    text-align: center;
+}
 .review-container {
     display: flex;
     flex-direction: column;
     flex:3;
+    margin-left:10em;
+    margin-right: 5em; 
     overflow: auto;
     color: #00796b;
     font-size: large;
@@ -222,7 +189,7 @@
 
 .review-section {
     display: grid;
-    grid-row-gap: 3em;
+    grid-row-gap: 1em;
     grid-template-columns: auto;
     margin-bottom: 20vh;
     padding: 10px 10px;
@@ -274,4 +241,113 @@
     text-align: center;
     order:2;
 }
+/* ********************************************************************************************************** */
+
+
+
+@media screen and ( max-width : 768px){
+    .main-container{
+        flex-direction: column;
+        padding: 1.5em;
+        padding-top: 2em;
+    }
+    .add{
+        font-size: small;
+    }
+
+    .review-container .personal-review{
+        order:1;
+        margin-bottom: 15px;
+    }
+    .review-container .review-section{
+        order:2;
+        margin-bottom: 0;
+    }
+    .average{
+        padding:1em;
+        padding-right: 0;
+        font-weight: bold;
+        color:#2962FF;
+        text-align: left;
+    
+     }
+     .count{
+        padding: 2px; 
+        font-size: small;
+        font-style: italic;
+     }
+     .stars {
+        flex: 2;
+        font-size: 0.5em;
+    }
+    .summary-item {
+        padding-top: 1em;
+    }
+    .no-reviews{
+        font-weight: bold;
+        text-align: center;
+    }
+    .personal-rating {
+        text-align: right;
+    }
+    .edit{
+        font-size: 40px;
+        padding-right: none;
+        
+    }
+    .review-container {
+        display: flex;
+        flex-direction: column;
+        flex:3;
+        margin-left: 0em;
+        margin-right: 0em;
+        
+    }
+    .rating-container {
+        font-size: 2em;
+        
+    }
+    .modal-submit{
+        padding-top: 0.5em;
+        text-align: center;
+        left:0;
+    }
+    .popup-rating{
+        position: relative;
+        margin: auto auto;
+        max-width: 60%;
+        max-height: auto;
+        text-align: justify;
+        /* padding-bottom: 2em; */
+        
+    }
+        
+    .popup-review{
+        position: relative;
+        margin: 30px auto;
+        max-width:70%;
+        max-height: 60vh; 
+        align-items: center;
+        background-color:white;
+        border:1px solid black;
+    
+    }
+    .popup-review textarea{
+        width:80%;
+        /* margin: auto 8px;
+        padding: 12px; */
+        max-height: 20vh;
+        border: #ddd 1px solid;
+        border-radius: 5px;
+        resize: none;
+        margin-bottom: 3em;
+        font-size: 14px;
+        font-family: Arial;
+        text-align: center;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: normal;
+        text-transform: none;}
+}
+
 

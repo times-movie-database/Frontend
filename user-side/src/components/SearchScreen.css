@@ -4,7 +4,7 @@
 }
 .searchgrid {
   display: grid;
-  width: 100%;
+  width: 95%;
   margin: 2em auto;
   grid-row-gap: 3em;
   grid-column-gap: 1em;

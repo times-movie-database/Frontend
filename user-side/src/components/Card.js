@@ -22,7 +22,11 @@ export default function Card(props) {
           fullSymbol="fa fa-star checked"
           readonly={true}
           fractions={10}
-        ></Rating>{" "}<div style={{fontWeight:'bold'}}>{movieRating}/5</div>
+        ></Rating>{" "}<div style={{ fontSize:'small',
+         paddingTop:'0.25em',
+         fontWeight:'bold',
+         paddingLeft:'15px'
+         }}>{movieRating}/5</div>
         
       </div>
     </div>

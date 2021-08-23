@@ -30,7 +30,7 @@ export default function HomeScreen(){
             </ErrorBoundary>
         <div id="container1">
             <div id="dropdown" >
-            <label htmlFor="menu1" className='fn'>Top 10 in </label>
+            <label htmlFor="menu1" className='fn'>Top 10 Movies in </label>
             <select className='genre-menu' onChange={handleGenre}>
             <option value="All">All</option>
             {genreList.map((genre)=><option key={genre.id} value={genre.name}>{genre.name}</option>)}

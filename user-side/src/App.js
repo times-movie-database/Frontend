@@ -9,9 +9,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import MovieDetails from './components/MovieDetails';
+import {lazy,Suspense } from "react";
 import EmptySearchScreen from './components/EmptySearchScreen';
-
+const MovieDetails=lazy(()=>import ('./components/MovieDetails'));
 function App() {
   return (
     <Router>
@@ -49,7 +49,9 @@ function App() {
           </Route>
           <Route path="/movie/:id">
             <ErrorBoundary>
+              <Suspense fallback={<h1>Loading....</h1>}>
               < MovieDetails />
+              </Suspense>
             </ErrorBoundary>
           </Route>
 

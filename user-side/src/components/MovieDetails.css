@@ -30,6 +30,7 @@
 .add{
     cursor: pointer;
     color: #2962FF;
+    margin-bottom: 0.5em;
     /* font-weight: bolder; */
     font-size: large;
 }
@@ -58,10 +59,13 @@
     text-align: right;
 
 }
+.bold{
+    font-weight: bold;
+}
 .rate-this-star{
     /* border:2px solid #2962FF; */
     color:#2962FF;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 1.5em;
 }
 .user-reviews{
@@ -149,7 +153,7 @@
 }
 
 .edit {
-    font-size: 2.5em;
+    font-size: 1.5em;
     
 }
 
@@ -254,11 +258,6 @@
 }
 /* ********************************************************************************************************** */
 
-li{
-    display: inline; 
-
-}
-
 @media screen and ( max-width : 768px){
     .main-container{
         flex-direction: column;
@@ -320,9 +319,10 @@ li{
         
     }
     .review-container {
-        display: flex;
+        display: flex; 
+        /* align-content: flex-start; */
         flex-direction: column;
-        flex:3;
+        /* flex:3; */
         margin-left: 0em;
         margin-right: 0em;
         

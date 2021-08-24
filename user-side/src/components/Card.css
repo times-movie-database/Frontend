@@ -11,15 +11,13 @@
   overflow: auto;
   cursor: pointer;
 }
-.checked {
+.card-rating{
+  text-align: center;
+}
+.card .checked {
   color: orange;
 }
-.sno {
-  color: gray;
-  font-size: small;
-  text-align: left;
-  margin-left: 20px;
-}
+
 .card-title{
   text-transform: capitalize;
 }

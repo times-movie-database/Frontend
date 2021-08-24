@@ -17,7 +17,6 @@ Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);
-  const [feildRequired, setFeildRequired]=useState(false);
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
@@ -62,7 +61,6 @@ export default function MovieDetails(props) {
   const postReview = (event) => {
     const review = event.target.value.replace(/^ +/gm, ''); //the regex replaces intial spaces from the review text. If only spaces are provide, the review variable will be an empty string
     if(review.length >0 ){  
-      setFeildRequired(false); //since review has text, we don't need to show warning
       setUserReview(review);
       setReviewEmpty(false);
     }
@@ -71,15 +69,14 @@ export default function MovieDetails(props) {
     }
   };
   const publishReview = () => {
-    setFeildRequired(true);
     if(reviewEmpty)
       return;
     postMovieReview(
       userReview,
       id,
       (response) => {
+        console.log(response.data);
         setReview(false);
-        setFeildRequired(false);
         alert("Review Submitted")
       },
       (error) => {
@@ -129,7 +126,7 @@ export default function MovieDetails(props) {
 
             <div className="personal-rating">
               <div className="add" onClick={() => setRating(true)}>
-                <div className="rate-this-star">☆</div>Rate This
+                <div className="rate-this-star">☆</div><div className="bold">Rate This</div>
               </div>
               <Modal
                 className="popup-rating"
@@ -180,7 +177,6 @@ export default function MovieDetails(props) {
 
         <div className="review-container">
           <div className="review-heading">
-            <button className="user-reviews">User Reviews</button>
             <div className="personal-review">
             <div className="add" onClick={() => setReview(true)}>
               + Review
@@ -206,14 +202,6 @@ export default function MovieDetails(props) {
                   name="userReview"
                 ></textarea>
               </div>
-              { feildRequired
-              &&reviewEmpty
-              &&<div style={
-                { textAlign :'center',
-                  paddingTop:'0.5em',
-                  fontSize:'small' ,
-                  color:'red'
-                }}>Please enter the review</div>}
               <div className="modal-submit">
                 <button className="modal-btn" onClick={publishReview}>
                   Sumbit
@@ -221,6 +209,7 @@ export default function MovieDetails(props) {
               </div>
             </Modal>
           </div>
+          <button className="user-reviews">User Reviews</button>
           </div>
           <div className="review-section">
             <MovieReviews id={id} className="review-section"></MovieReviews>

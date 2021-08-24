@@ -12,12 +12,16 @@
     text-align: center;
 }
 .tagged{
+    display: inline-block; 
     color: white;
+    text-align: left;
     background-color:#FDD835;
     border-radius: 0.5em;
-    padding:6px;
-    margin-right:4px ;
-    max-height: 26px;
+    padding:0.25em;
+    margin-right:0.25em;
+    margin-bottom:0.5em;
+    /* white-space:nowrap; */
+    /* max-height: 26px; */
 
 }
 .summary-wrap{
@@ -129,9 +133,9 @@
 }
 
 .cast-items {
-   /* display: block; */
     padding-top: 2em;
     min-height: 10vh;
+    text-align: left;
     
 }
 

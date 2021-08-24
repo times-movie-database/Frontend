@@ -1,5 +1,5 @@
 import "./SearchScreen.css";
-import { useState, useEffect,lazy,Suspense } from "react";
+import { useState, useEffect,lazy } from "react";
 import { searchMovie } from "../Services";
 import { getAllGenre } from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
@@ -9,7 +9,7 @@ import { useLocation, useParams } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header";
 import EmptySearchScreen from "./EmptySearchScreen";
-const Card=lazy(()=>import ('./Card'));
+import Card from './Card'
 export default function SearchScreen(props) {
   const [pageNumberMovies, setPageNumberMovies] = useState(1);
   const [hasMoreMovies,setHasMoreMovies]=useState(true);
@@ -17,13 +17,12 @@ export default function SearchScreen(props) {
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const { searchKeyword } = useParams();
-
+  const [end,setEnd]=useState(false);
   const isSearchKeywordEmpty = () => {
     console.log(searchKeyword.length);
     const regex = /[\s\s+/g]/;
     return regex.test(searchKeyword) && searchKeyword.length;
   }
-
   /*get genre list from server*/
   if (genreList.length === 0) {
     getAllGenre().then((res) => {
@@ -70,24 +69,17 @@ export default function SearchScreen(props) {
             <option value='All'>All</option>
             {genreList.map((genre) => <option className="opt" key={genre.id} value={genre.name}>{genre.name}</option>)}
           </select>
-          <Suspense fallback={<h1>Loading....</h1>}>
           <div id="container">
             {movies ?
-              <div className="searchgrid">
+              <div>
                 <ErrorBoundary>
                 <InfiniteScroll
                  className="searchgrid"
                  dataLength={movies.length}
                  next={fetchMoremovies}
                  hasMore={hasMoreMovies}
-                 loader={<Loader
-                  type="Puff"
-                  color="#00BFFF"
-                  height={100}
-                  width={100}
-                  
-                />}
-                 endMessage={<div>No more results to display</div>}
+                 loader={<Loader type="Oval" color="#6D6767" height={40} width={40}  className="loader"/>}
+                 endMessage={<div></div>}
                  >
                   {movies.map((movie, index) => (
                     
@@ -103,8 +95,9 @@ export default function SearchScreen(props) {
                   ))}</InfiniteScroll>
                   </ErrorBoundary>
                 </div> : <div className="show-result">No Result Found</div>}
-          </div></Suspense>
+          </div>
         </div>}
+        
     </div>
   );
 }

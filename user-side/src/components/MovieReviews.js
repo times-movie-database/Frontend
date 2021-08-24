@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import "./MovieReview.css";
 import Review from "./Review";
 import "./Review.css";
+import Loader from "react-loader-spinner";
 export default function MovieReviews(props) {
   const id = props.id;
   const [movieReviews, setMovieReviews] = useState([]);
@@ -43,7 +44,7 @@ export default function MovieReviews(props) {
           dataLength={movieReviews.length}
           next={fetchMorereviews}
           hasMore={hasMore}
-          loader={<h4>Loading....</h4>}
+          loader={<Loader type="Oval" color="#6D6767" height={40} width={40}  className="loader"/>}
           endMessage={<div>No more results to display</div>}
         >
           {movieReviews.map((movieReview, index) => (

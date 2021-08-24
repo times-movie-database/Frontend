@@ -7,6 +7,17 @@
   justify-content: space-around;
   align-items: center;
 }
+.loader{
+  text-align: center;
+  margin:4em;
+  color:#B8B2B0;
+}
+.end-message{
+  text-align:'center';
+  white-space: initial;
+  color:#00796b;
+  left:0;
+}
 .header img {
   width: 10%;
   height: 10%;

@@ -46,13 +46,7 @@ export default function HomeScreen(){
         <ErrorBoundary><Card id={movie.id}className="card" title={movie.title} rating={movie.rating} key={index}></Card></ErrorBoundary>)}
         </div>
         
- ):(<Loader
-    type="Puff"
-    color="#00BFFF"
-    height={100}
-    width={100}
-    
-  />)}
+ ):(<Loader type="Oval" color="#6D6767" height={80} width={80}  className="loader"/>)}
  </div>
                    </div>
         

@@ -6,6 +6,7 @@ import Rating from "react-rating";
 import Header from "./Header";
 import MovieReviews from "./MovieReviews";
 import ErrorBoundary from "./ErrorBoundary";
+import Loader from "react-loader-spinner";
 import {
   getMovieDetails,
   postMovieReview,
@@ -15,6 +16,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
+  const [loading,setLoading]=useState(false);
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);
   const [rating, setRating] = useState(false);
@@ -28,6 +30,7 @@ export default function MovieDetails(props) {
   };
   useEffect(() => {
     getMovieDetails(id, (response) => setMovie(response.data));
+    setLoading(true);
   }, [id,rating]);
  
   const handleRating = (ratingStar) => {
@@ -87,11 +90,12 @@ export default function MovieDetails(props) {
   };
   
   return (
+    
     <div>
       <ErrorBoundary>
         <Header searchBar="yes" addButton="yes" />
       </ErrorBoundary>
-      <div className="main-container">
+      {movie?(<div className="main-container">
         <div className="detail-container">
           <div className="title-and-edit-container">
             <div className="title">
@@ -219,6 +223,13 @@ export default function MovieDetails(props) {
           
         </div>
       </div>
-    </div>
+):(<Loader
+  type="Puff"
+  color="#00BFFF"
+  height={100}
+  width={100}
+  
+/>)}
+          </div>
   );
 }

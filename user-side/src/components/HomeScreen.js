@@ -4,8 +4,11 @@ import { getTopTenMovies } from '../Services';
 import ErrorBoundary from "./ErrorBoundary.js";
 import Header from "./Header.js";
 import { getAllGenre} from '../Services';
-const Card=lazy(()=>import ('./Card'));
+import Loader from "react-loader-spinner";
+import Card from './Card';
+
 export default function HomeScreen(){
+    const [loader,setLoader]=useState(false);
     const [movies,setMovies]=useState([]);
     const [genreList,setGenreList]=useState([]);
     const [selectedGenre,setSelectedGenre]=useState("All");
@@ -20,6 +23,7 @@ export default function HomeScreen(){
 
     useEffect(()=>{
         getTopTenMovies(selectedGenre,response => setMovies(response.data));
+        setLoader(true)
 
     },[selectedGenre])
     
@@ -35,13 +39,22 @@ export default function HomeScreen(){
             <option value="All">All</option>
             {genreList.map((genre)=><option key={genre.id} value={genre.name}>{genre.name}</option>)}
         </select>
-            </div>
-        <div className='grid'><Suspense fallback={<h1>Loading....</h1>}>
+        </div>
+            {loader?(
+        <div className='grid'>
         {movies.map((movie,index)=>
         <ErrorBoundary><Card id={movie.id}className="card" title={movie.title} rating={movie.rating} key={index}></Card></ErrorBoundary>)}
-        </Suspense></div>
         </div>
-        </div>
+        
+ ):(<Loader
+    type="Puff"
+    color="#00BFFF"
+    height={100}
+    width={100}
+    
+  />)}
+ </div>
+                   </div>
         
     )
 }

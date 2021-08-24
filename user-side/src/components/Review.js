@@ -7,6 +7,12 @@ export default function Review(props) {
   const toggleReadmore = () => {
     setReadmore(!Readmore);
   };
+  const hasReadmore=()=>{
+    if(text.length>150)
+    {return true}
+    else{return false} 
+  }
+  
   return (
     <div className="review">
       <div className="timestamp">

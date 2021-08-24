@@ -166,7 +166,8 @@ export default function MovieForm(props) {
         return regex.test(character);
     }
 
-    const validateCastName = (csv) => {
+    const validateCastName = (csvInput) => {
+        const csv = csvInput.toString().replace(/^ +/gm, '');
         const lastChar = csv.charAt(csv.length - 1);
         const newCast = parseLastNameInCSV(csv);
 
@@ -246,7 +247,7 @@ export default function MovieForm(props) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (titleError.fieldEmpty || genreError.fieldEmpty) {
+        if (titleError.fieldEmpty || genreError.fieldEmpty || castNameCSV.length===0) {
             setFeildRequired(true);
         }
         else {
@@ -315,12 +316,13 @@ export default function MovieForm(props) {
 
                     <div className='form-group'>
                         <label for='cast' name='cast-csv'>
-                            Casts
+                            Casts <span className="required">*</span>
                         </label>
                         <input name='cast' id='cast' type='text' placeholder='Enter comma separated names here' value={castNameCSV} onChange={handleFeildChange}></input><br />
                     </div>
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
                     {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
+                    { (castNameCSV.length ===0 && feildRequired)? <div className='warning shake-text'>This feild is required</div> : null}
 
                     <div className='form-group'>
                         <label for='genres' name='genre-dropdown'>

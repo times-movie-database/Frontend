@@ -13,7 +13,9 @@ export default function Card(props) {
     <div className={props.className}>
       <div className="sno">{props.count}</div>
       <div className="card-title">
-        <h2>{props.title}</h2>
+        { props.title.length <42?( <h2>{props.title}</h2> ) : 
+         ( props.title.length>41 && props.title.length <76)?( <h3>{props.title}</h3> ):
+         props.title.length>75?( <h4>{props.title}</h4> ) : null }    
       </div>
       <div className="card-rating">
         <Rating

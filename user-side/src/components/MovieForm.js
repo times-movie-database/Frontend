@@ -322,7 +322,7 @@ export default function MovieForm(props) {
                     </div>
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
                     {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
-                    { (castNameCSV.length ===0 && feildRequired)? <div className='warning shake-text'>This feild is required</div> : null}
+                    { (castNameCSV.length ===0 && feildRequired)? <div className='warning shake-text'>Movie cast cannot be empty</div> : null}
 
                     <div className='form-group'>
                         <label for='genres' name='genre-dropdown'>

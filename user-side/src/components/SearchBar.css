@@ -14,7 +14,7 @@
   background-color: transparent;
   border: none;
   text-align: left;
-  padding: 1em;
+  padding-left: 0.5em;
 }
 .search-bar .btn {
   width: 5%;

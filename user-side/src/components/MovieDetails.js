@@ -35,12 +35,13 @@ export default function MovieDetails(props) {
   };
 
   const publishRating = () => {
-    const r = { userRating };
+    const rating = userRating.toFixed(1); //setting number to fixed precision till 1 significant digit
+  
     postUserRating(
       id,
-      r.userRating,
+      rating,
       (response) => {
-        alert("Added Rating");
+        alert("Rating Added");
         setRating(false);
       },
       (error) => {

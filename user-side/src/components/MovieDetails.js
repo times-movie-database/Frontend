@@ -219,7 +219,7 @@ export default function MovieDetails(props) {
                   paddingTop:'0.5em',
                   fontSize:'small' ,
                   color:'red'
-                }}>Please write something before submitting</div>}
+                }}>Please enter the review</div>}
               <div className="modal-submit">
                 <button className="modal-btn" onClick={publishReview}>
                   Sumbit

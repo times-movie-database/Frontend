@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './SearchBar.css'
 import { Link } from "react-router-dom";
+import Popup from 'reactjs-popup';
 export default function SearchBar() {
   
   const initialPlaceholder = () => {
@@ -68,9 +69,12 @@ export default function SearchBar() {
         maxLength='100'
       />
       {!isKeyWordValid() &&
-        <button className="btn">
-          <i className="fa fa-search"></i>
-        </button>
+        
+        <Popup className='error-tooltip' trigger={<button className="btn">
+        <i className="fa fa-search"></i>
+      </button>} position="right center">
+        <div className='error-tooltip'>Enter a keyword to search!!</div>
+      </Popup>
       }
       {isKeyWordValid() &&
         <Link to={{ pathname: "/search/" + keyword, state: { searchKeyword: keyword } }} style={{ "textDecoration": "none" }}>

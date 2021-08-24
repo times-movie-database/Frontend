@@ -257,7 +257,13 @@
     order:2;
 }
 /* ********************************************************************************************************** */
-
+@media (min-width: 768px) and (max-width: 1120px) {
+    .main-container{
+        flex-direction: column;
+        padding: 1.5em;
+        padding-top: 2em;
+    }
+}
 @media screen and ( max-width : 768px){
     .main-container{
         flex-direction: column;

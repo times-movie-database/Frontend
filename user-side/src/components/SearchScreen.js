@@ -17,12 +17,6 @@ export default function SearchScreen(props) {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const { searchKeyword } = useParams();
 
-  const isSearchKeywordEmpty = () => {
-    console.log(searchKeyword.length);
-    const regex = /[\s\s+/g]/;
-    return regex.test(searchKeyword) && searchKeyword.length;
-  }
-
   /*get genre list from server*/
   if (genreList.length === 0) {
     getAllGenre().then((res) => {
@@ -60,7 +54,7 @@ export default function SearchScreen(props) {
         <Header searchBar="yes" addButton="yes" />
       </ErrorBoundary>
 
-      {isSearchKeywordEmpty() ? <EmptySearchScreen/> :
+      
         <div className="search">
 
           <div className="show-result">Results for "{searchKeyword}"</div>
@@ -97,7 +91,7 @@ export default function SearchScreen(props) {
                   </ErrorBoundary>
                 </div> : <div className="show-result">No Result Found</div>}
           </div></Suspense>
-        </div>}
+        </div>
     </div>
   );
 }

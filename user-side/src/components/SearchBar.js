@@ -12,17 +12,6 @@ export default function SearchBar() {
   const handleKeyword = (event) => {
     setKeyword(event.target.value);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!keyword) {
-      alert("Enter movie name");
-      //searchMovie("",0).then(res=>{setSearchResult(res.data)})
-      //console.log(searchResult);
-      // window.location.href = "/search/keyword";
-
-    }
-
-  }
   useEffect(() => {
     const str = keyword;
     setKeyword(str.toString().replace(/^ +/gm, '')); //this replaces the spaces in beggining with empty string

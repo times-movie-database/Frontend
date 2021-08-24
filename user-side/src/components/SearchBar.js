@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import './SearchBar.css'
 import { Link } from "react-router-dom";
 export default function SearchBar() {
+  
+  const initialPlaceholder = () => {
+    return  window.innerWidth>=768?"Search through moive title or keywords...": "Search...";
+  }
   const [keyword, setKeyword] = useState([]);
-  const [placeholder,setPlaceHolder]=useState("Search...")
+  const [placeholder,setPlaceHolder]=useState(initialPlaceholder())
   const handleKeyword = (event) => {
     setKeyword(event.target.value);
   };

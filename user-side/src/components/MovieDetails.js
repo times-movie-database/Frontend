@@ -17,6 +17,7 @@ Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);
+  const [feildRequired, setFeildRequired]=useState(false);
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
@@ -61,6 +62,7 @@ export default function MovieDetails(props) {
   const postReview = (event) => {
     const review = event.target.value.replace(/^ +/gm, ''); //the regex replaces intial spaces from the review text. If only spaces are provide, the review variable will be an empty string
     if(review.length >0 ){  
+      setFeildRequired(false); //since review has text, we don't need to show warning
       setUserReview(review);
       setReviewEmpty(false);
     }
@@ -69,14 +71,15 @@ export default function MovieDetails(props) {
     }
   };
   const publishReview = () => {
+    setFeildRequired(true);
     if(reviewEmpty)
       return;
     postMovieReview(
       userReview,
       id,
       (response) => {
-        console.log(response.data);
         setReview(false);
+        setFeildRequired(false);
         alert("Review Submitted")
       },
       (error) => {
@@ -209,6 +212,14 @@ export default function MovieDetails(props) {
                   name="userReview"
                 ></textarea>
               </div>
+              { feildRequired
+              &&reviewEmpty
+              &&<div style={
+                { textAlign :'center',
+                  paddingTop:'0.5em',
+                  fontSize:'small' ,
+                  color:'red'
+                }}>Please write something before submitting</div>}
               <div className="modal-submit">
                 <button className="modal-btn" onClick={publishReview}>
                   Sumbit

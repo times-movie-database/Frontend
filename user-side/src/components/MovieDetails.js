@@ -29,8 +29,8 @@ export default function MovieDetails(props) {
     window.location.href = `/movie/edit/${id}`;
   };
   useEffect(() => {
-    getMovieDetails(id, (response) => setMovie(response.data));
-    setLoading(true);
+    getMovieDetails(id, (response) => {setMovie(response.data);setLoading(true);});
+    
   }, [id,rating]);
  
   const handleRating = (ratingStar) => {
@@ -95,7 +95,7 @@ export default function MovieDetails(props) {
       <ErrorBoundary>
         <Header searchBar="yes" addButton="yes" />
       </ErrorBoundary>
-      {movie?(<div className="main-container">
+      {loading?(<div className="main-container">
         <div className="detail-container">
           <div className="title-and-edit-container">
             <div className="title">

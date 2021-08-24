@@ -4,6 +4,7 @@ import { searchMovie } from "../Services";
 import { getAllGenre } from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import { useLocation, useParams } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header";
@@ -16,6 +17,12 @@ export default function SearchScreen(props) {
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const { searchKeyword } = useParams();
+
+  const isSearchKeywordEmpty = () => {
+    console.log(searchKeyword.length);
+    const regex = /[\s\s+/g]/;
+    return regex.test(searchKeyword) && searchKeyword.length;
+  }
 
   /*get genre list from server*/
   if (genreList.length === 0) {
@@ -54,7 +61,7 @@ export default function SearchScreen(props) {
         <Header searchBar="yes" addButton="yes" />
       </ErrorBoundary>
 
-      
+      {isSearchKeywordEmpty() ? <EmptySearchScreen/> :
         <div className="search">
 
           <div className="show-result">Results for "{searchKeyword}"</div>
@@ -73,7 +80,13 @@ export default function SearchScreen(props) {
                  dataLength={movies.length}
                  next={fetchMoremovies}
                  hasMore={hasMoreMovies}
-                 loader={<h4>Loading....</h4>}
+                 loader={<Loader
+                  type="Puff"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  
+                />}
                  endMessage={<div>No more results to display</div>}
                  >
                   {movies.map((movie, index) => (
@@ -91,7 +104,7 @@ export default function SearchScreen(props) {
                   </ErrorBoundary>
                 </div> : <div className="show-result">No Result Found</div>}
           </div></Suspense>
-        </div>
+        </div>}
     </div>
   );
 }

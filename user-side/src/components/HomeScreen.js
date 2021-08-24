@@ -22,8 +22,8 @@ export default function HomeScreen(){
     }
 
     useEffect(()=>{
-        getTopTenMovies(selectedGenre,response => setMovies(response.data));
-        setLoader(true)
+        getTopTenMovies(selectedGenre,response => {setMovies(response.data);setLoader(true)});
+        
 
     },[selectedGenre])
     

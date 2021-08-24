@@ -167,10 +167,9 @@ export default function MovieForm(props) {
     }
 
     const validateCastName = (csvInput) => {
-        const csv = csvInput.toString().replace(/^ +/gm, '');
+        const csv = csvInput.toString().replace(/^ +/gm, ''); //to terminate spaces in the starting of CSV in feilds
         const lastChar = csv.charAt(csv.length - 1);
-        const newCast = parseLastNameInCSV(csv);
-
+        const newCast = parseLastNameInCSV(csv).replace(/^ +/gm, ''); // to terminate spaces in the starting of individual cast naem
         /*Check whether last character inputed is valid or not  */
         if (lastChar !== '' &&
             !isValidCharacter(lastChar)) {
@@ -184,9 +183,10 @@ export default function MovieForm(props) {
             setCastError({ ...castError, limitExceeds: true });
         }
         else if (lastChar !== ',' &&
-            (isValidCharacter(lastChar) || lastChar === '')) {
+            (isValidCharacter(lastChar) || lastChar === '') && (newCast.length>0 ||csv.length===0)) {
             setCastNameCSV(csv);
             setCastError({ ...castError, limitExceeds: false });
+            setCastError({ ...castError, blankName: false });
         }
 
         if (lastChar === ',') {
@@ -195,9 +195,9 @@ export default function MovieForm(props) {
                 setCastError({ ...castError, blankName: false });
             }
             else {
-                console.log("cast name shouldn't be blank");
-                setCastError({ ...castError, blankName: true });
+                setCastError({ ...castError, blankName: true }); //throws error on two consecutive commas
             }
+           
         }
         setCastName(newCast);
     }
@@ -323,6 +323,7 @@ export default function MovieForm(props) {
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
                     {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
                     { (castNameCSV.length ===0 && feildRequired)? <div className='warning shake-text'>Movie cast cannot be empty</div> : null}
+                    { castError.blankName ? <div className='warning'>Please enter a valid name between two commas</div> : null}
 
                     <div className='form-group'>
                         <label for='genres' name='genre-dropdown'>

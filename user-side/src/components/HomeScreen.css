@@ -19,7 +19,7 @@
   grid-template-columns: auto auto;
 }
 .genre-menu {
-  width: 20%;
+  width: 45%;
   height: 5vh;
   font-size: larger;
 }
@@ -35,7 +35,7 @@
     grid-template-columns: auto;
   }
   .genre-menu {
-    width: 30%;
+    width: 45%;
     height: 10%;
     font-size: large;
   }

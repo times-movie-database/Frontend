@@ -30,7 +30,7 @@
 .add{
     cursor: pointer;
     color: #2962FF;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     font-size: large;
 }
 .modal-submit{
@@ -282,6 +282,7 @@ li{
     }
     .summary-wrap{
         padding: 0.3em;
+        margin-top: 0.5em;
         padding-right: 	0.8em;
         background-color: #F7F7F7;
         border: 1px solid black;

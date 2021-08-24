@@ -159,8 +159,8 @@ export default function MovieDetails(props) {
               </Modal>
             </div>
           </div>
-          Summary :
           <div className="summary-item">
+          <button className="user-reviews">Summary</button> 
              <div className="summary-wrap">{movie.summary}</div>
              <div className="cast-items">
               <span className="cast-title">
@@ -178,13 +178,7 @@ export default function MovieDetails(props) {
         <div className="review-container">
           <div className="review-heading">
             <button className="user-reviews">User Reviews</button>
-          </div>
-          <div className="review-section">
-            <MovieReviews id={id} className="review-section"></MovieReviews>
-
-          </div>
-
-          <div className="personal-review">
+            <div className="personal-review">
             <div className="add" onClick={() => setReview(true)}>
               + Review
             </div>
@@ -216,6 +210,13 @@ export default function MovieDetails(props) {
               </div>
             </Modal>
           </div>
+          </div>
+          <div className="review-section">
+            <MovieReviews id={id} className="review-section"></MovieReviews>
+
+          </div>
+
+          
         </div>
       </div>
     </div>

@@ -277,7 +277,9 @@ li{
         margin-bottom: 0;
     }
     .summary-wrap{
-        background-color: #666666;
+        padding: 0.3em;
+        padding-right: 	0.8em;
+        background-color: #F7F7F7;
         border: 1px solid black;
     }
     .average{

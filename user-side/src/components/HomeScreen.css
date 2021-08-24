@@ -44,16 +44,18 @@
   }
   .card{
     width:100% !important;
-    height: 4em !important;
+    height: auto !important;
     border-radius: 0.5em !important;
   }
   .card h2{
     margin-block-start: 0.25em;
     margin-block-end: 0.34em;
     font-size: large;
+    padding: 0em 0.6em;
   }
   .card-rating{
     display: flex;
     justify-content: center;
+    padding-bottom: 0.6em;
   }
 }

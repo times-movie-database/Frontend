@@ -63,6 +63,10 @@ export default function MovieForm(props) {
         csv+=array[array.length-1]+" ";
         return csv;
     }
+    const parseLastNameInCSV = (input) => {
+        var n = input.lastIndexOf(',');
+        return input.substring(n + 1);
+    }
 
 
     let formHeading; //to keep heading of the form
@@ -86,14 +90,16 @@ export default function MovieForm(props) {
                 if (movieDetail.title) {
                     setTitleError({ ...titleError, fieldEmpty: false })
                 }
-                if(movieDetail.cast.length>0){
-                    setCastError({ ...castError, blankName: false })
-                }
                 
                 const castArray = movieDetail.cast.map((cast) => {
                     return cast.name
                 })
                 const castCSV = getCsvFromArray(castArray);
+
+                if(castCSV.length>0){
+                    setCastError({ ...castError, blankName: false });
+                    setCastName(parseLastNameInCSV(castCSV).replace(/^ +/gm, ''));
+                }
                 setCastNameCSV(castCSV);
                 setInitialGenre(movieDetail.genres);
             })
@@ -160,10 +166,7 @@ export default function MovieForm(props) {
 
     }
 
-    const parseLastNameInCSV = (input) => {
-        var n = input.lastIndexOf(',');
-        return input.substring(n + 1);
-    }
+    
 
     const isValidCharacter = (character) => {
         const regex = /^[,a-zA-Z ]/;
@@ -174,10 +177,6 @@ export default function MovieForm(props) {
         const csv = csvInput.toString().replace(/^ +/gm, ''); //to terminate spaces in the starting of CSV in feilds
         const lastChar = csv.charAt(csv.length - 1);
         const newCast = parseLastNameInCSV(csv).replace(/^ +/gm, ''); // to terminate spaces in the starting of individual cast naem
-
-        console.log(lastChar);
-        console.log(csv);
-        console.log(newCast);
         /*Check whether last character inputed is valid or not  */
         if (lastChar !== '' &&
             !isValidCharacter(lastChar)) {
@@ -331,7 +330,7 @@ export default function MovieForm(props) {
                     {inValidName ? <div className='warning'>Names should not contain any number or special character</div> : null}
                     {castError.limitExceeds ? <div className='warning'>Cast name should not be more than 50 characters</div> : null}
                     { (castNameCSV.length ===0 && feildRequired)? <div className='warning shake-text'>Movie cast cannot be empty</div> : null}
-                    { castError.blankName ? <div className='warning'>Avoid extra spaces</div> : null}
+                    { castError.blankName ? <div className='warning'>Please add a valid name between two commas</div> : null}
 
                     <div className='form-group'>
                         <label for='genres' name='genre-dropdown'>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function SearchBar() {
   
   const initialPlaceholder = () => {
-    return  window.innerWidth>=768?"Search through moive title or keywords...": "Search...";
+    return  window.innerWidth>=768?"Search through movie title or keywords...": "Search...";
   }
   const [keyword, setKeyword] = useState([]);
   const [placeholder,setPlaceHolder]=useState(initialPlaceholder())

@@ -204,6 +204,7 @@ export default function MovieDetails(props) {
                   onChange={postReview}
                   value={userReview.value}
                   name="userReview"
+                  maxLength='500'
                 ></textarea>
               </div>
               <div className="modal-submit">

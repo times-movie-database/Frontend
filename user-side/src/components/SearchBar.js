@@ -70,7 +70,7 @@ export default function SearchBar() {
       />
       {!isKeyWordValid() &&
         
-        <Popup className='error-tooltip' trigger={<button className="btn">
+        <Popup  trigger={<button className="btn">
         <i className="fa fa-search"></i>
       </button>} position="right center">
         <div className='error-tooltip'>Enter a keyword to search!!</div>

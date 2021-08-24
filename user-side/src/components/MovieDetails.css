@@ -347,6 +347,9 @@ li{
     }
         
     .popup-review{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         position: relative;
         margin: 30px auto;
         max-width:70%;
@@ -363,8 +366,8 @@ li{
         max-height: 20vh;
         border: #ddd 1px solid;
         border-radius: 5px;
-        resize: none;
         margin-bottom: 3em;
+        resize: none;
         font-size: 14px;
         font-family: Arial;
         text-align: center;
@@ -372,6 +375,10 @@ li{
         font-style: normal;
         letter-spacing: normal;
         text-transform: none;}
+}
+
+.popup-review .moviedetails{
+    margin-bottom: 0em;
 }
 
 

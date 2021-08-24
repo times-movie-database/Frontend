@@ -22,8 +22,17 @@
   background-color: transparent;
   cursor: pointer;
 }
+.error-tooltip{
+  background-color: white;
+  color: red;
+  border-radius: 0.5em;
+  padding: 1em;
+}
 @media screen and (max-width: 768px) {
   .search-bar .btn {
     width: 15%;
+  }
+  .error-tooltip{
+    padding: 0.2em;
   }
 }

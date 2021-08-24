@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './SearchBar.css'
 import { Link } from "react-router-dom";
+import Popup from 'reactjs-popup';
 export default function SearchBar() {
   
   const initialPlaceholder = () => {
@@ -11,17 +12,6 @@ export default function SearchBar() {
   const handleKeyword = (event) => {
     setKeyword(event.target.value);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!keyword) {
-      alert("Enter movie name");
-      //searchMovie("",0).then(res=>{setSearchResult(res.data)})
-      //console.log(searchResult);
-      // window.location.href = "/search/keyword";
-
-    }
-
-  }
   useEffect(() => {
     const str = keyword;
     setKeyword(str.toString().replace(/^ +/gm, '')); //this replaces the spaces in beggining with empty string
@@ -68,9 +58,12 @@ export default function SearchBar() {
         maxLength='100'
       />
       {!isKeyWordValid() &&
-        <button className="btn">
-          <i className="fa fa-search"></i>
-        </button>
+        
+        <Popup  trigger={<button className="btn">
+        <i className="fa fa-search"></i>
+      </button>} position="right center">
+        <div className='error-tooltip'>Enter a keyword to search!!</div>
+      </Popup>
       }
       {isKeyWordValid() &&
         <Link to={{ pathname: "/search/" + keyword, state: { searchKeyword: keyword } }} style={{ "textDecoration": "none" }}>

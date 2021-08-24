@@ -44,7 +44,7 @@ export default function SearchBar() {
   
   useEffect(() => {
     const debouncedHandleResize = debounce(function  updateSearchBarPlaceHolder(){
-      const newPlaceHoder= window.innerWidth>=768?"Search through moive title or keywords...": "Search...";
+      const newPlaceHoder= window.innerWidth>=768?"Search through movie title or keywords...": "Search...";
       setPlaceHolder( newPlaceHoder );
     }, 200)
 

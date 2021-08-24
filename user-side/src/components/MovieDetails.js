@@ -16,7 +16,7 @@ import { useLocation, useParams } from "react-router-dom";
 Modal.setAppElement("#root");
 export default function MovieDetails(props) {
   const [review, setReview] = useState(false);
-  
+  const [reviewEmpty, setReviewEmpty]=useState(true);
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
@@ -58,10 +58,18 @@ export default function MovieDetails(props) {
 
   //Add a review to the movie
   const postReview = (event) => {
-    const string = event.target.value;
-    setUserReview(string);
+    const review = event.target.value.replace(/^ +/gm, ''); //the regex replaces intial spaces from the review text. If only spaces are provide, the review variable will be an empty string
+    if(review.length >0 ){  
+      setUserReview(review);
+      setReviewEmpty(false);
+    }
+    else{
+        setReviewEmpty(true);
+    }
   };
   const publishReview = () => {
+    if(reviewEmpty)
+      return;
     postMovieReview(
       userReview,
       id,

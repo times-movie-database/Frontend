@@ -1,7 +1,6 @@
 .review{
     border-radius: 0.5em;
     box-shadow: 0 2px 20px gray;
-    /* background-color: #00897B;*/
     color: black; 
     padding:1em;
     overflow: auto;
@@ -9,6 +8,7 @@
     min-width: 50%;
     min-height: 20vh; 
 }
+/* hide scroll bar */
 .review::-webkit-scrollbar {
     display: none;
 }
@@ -20,7 +20,8 @@
 .review:hover{
     box-shadow: 0 8px 16px 0 inset rgba(255, 0, 255, 0.5);
 }
-.timestamp{
+/* properties for timestamp of review */
+.timestamp{        
     font-size: small;
     top: 0;
     /* color:wheat; */

@@ -84,7 +84,7 @@ export default function MovieForm(props) {
 
                 const movieDetail = response.data;
                 const movieNewState = {
-                    title: movieDetail.title,
+                    title: capitaliseFirstLetter(movieDetail.title),
                     summary: movieDetail.summary,
                     genreIdList: movieDetail.genres.map((genre) => {
                         return genre.id

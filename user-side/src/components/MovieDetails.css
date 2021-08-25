@@ -98,7 +98,7 @@
     letter-spacing: normal;
     text-transform: none;}
 .modal-submit{
-    padding-top: 4em;
+    padding-top: 2.8em;
     text-align: center;
     left:0;
 }
@@ -424,15 +424,20 @@
         /* padding-bottom: 2em; */
         
     }
-        
+    .center-textarea{
+        text-align: center;
+        margin-top: 2em;
+        width: 85%;
+    }
     .popup-review{
         display: flex;
         flex-direction: column;
         justify-content: center;
         position: relative;
-        margin: 30px auto;
+        top:20%;
         max-width:70%;
-        max-height: 60vh; 
+        height: auto;
+        margin:0px auto; 
         align-items: center;
         background-color:white;
         border:1px solid black;

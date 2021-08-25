@@ -45,7 +45,7 @@ export default function MovieReviews(props) {
           next={fetchMorereviews}
           hasMore={hasMore}
           loader={<Loader type="Oval" color="#6D6767" height={40} width={40}  className="loader"/>}
-          endMessage={<div>No more results to display</div>}
+          endMessage={<div style={{textAlign:'center'}}>No more results to display</div>}
         >
           {movieReviews.map((movieReview, index) => (
             <Review timestamp={movieReview.createdAt}>

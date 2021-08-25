@@ -19,12 +19,13 @@ export default function Review(props) {
         {Readmore ? text.slice(0, 150) : text}{" "}
         {/*truncates text if it is more 150 characters*/}
         <span onClick={toggleReadmore} className="read-more">
+          {" "}
           {/*read more button */}
           {text.length > 150
             ? Readmore
               ? "...read more"
               : " Show Less"
-            : null}
+            : null}{" "}
           {/*displays read more if text is more than 150 characters*/}
         </span>
       </div>

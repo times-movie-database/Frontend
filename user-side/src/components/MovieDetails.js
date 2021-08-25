@@ -157,7 +157,7 @@ export default function MovieDetails(props) {
                 />
                 <div className="modal-submit">
                   <button className="modal-btn" onClick={publishRating}>
-                    Sumbit
+                    Submit
                   </button>
                 </div>
               </Modal>

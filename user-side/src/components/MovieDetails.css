@@ -6,7 +6,7 @@
     font-size: x-large;
     font-weight: bold;
     text-align: center;
-    padding-bottom: 1em;
+    padding: 1.2em;
 }
 .center-rating{
     text-align: center;
@@ -113,8 +113,7 @@
     font-size: x-large;
     font-weight: bold;
     background-color: transparent;
-    top:0;
-    right:0;
+    float: right;
     border: transparent;
     cursor: pointer;
 }
@@ -410,7 +409,7 @@
         
     }
     .modal-submit{
-        padding-top: 0.5em;
+        padding-top: 2.5em;
         text-align: center;
         left:0;
     }

@@ -224,7 +224,7 @@ export default function MovieDetails() {
                 }}>Please write something before submitting</div>}
               <div className="modal-submit">
                 <button className="modal-btn" onClick={publishReview}>
-                  Sumbit
+                  Submit
                 </button>
               </div>
             </Modal>

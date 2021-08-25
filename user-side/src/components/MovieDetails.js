@@ -18,6 +18,7 @@ export default function MovieDetails() {
   const [loading,setLoading]=useState(false);
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);
+  const [feildRequired, setFeildRequired]=useState(false);
   const [rating, setRating] = useState(false);
   const [userRating, setUserRating] = useState(1);
   const [userReview, setUserReview] = useState({});
@@ -63,6 +64,7 @@ export default function MovieDetails() {
   const postReview = (event) => {
     const review = event.target.value.replace(/^ +/gm, ''); //the regex replaces intial spaces from the review text. If only spaces are provide, the review variable will be an empty string
     if(review.length >0 ){  
+      setFeildRequired(false);
       setUserReview(review);
       setReviewEmpty(false);             //validation for empty user reivew
     }
@@ -71,6 +73,7 @@ export default function MovieDetails() {
     }
   };
   const publishReview = () => {
+    setFeildRequired(true);
     if(reviewEmpty)
       return;
     postMovieReview(
@@ -79,6 +82,7 @@ export default function MovieDetails() {
       (response) => {
         console.log(response.data);
         setReview(false);
+        setFeildRequired(false);
         alert("Review Submitted")
       },
       (error) => {
@@ -207,6 +211,14 @@ export default function MovieDetails() {
                   maxLength='500'
                 ></textarea>
               </div>
+              { feildRequired
+              &&reviewEmpty
+              &&<div style={
+                { textAlign :'center',
+                  paddingTop:'0.5em',
+                  fontSize:'small' ,
+                  color:'red'
+                }}>Please write something before submitting</div>}
               <div className="modal-submit">
                 <button className="modal-btn" onClick={publishReview}>
                   Sumbit

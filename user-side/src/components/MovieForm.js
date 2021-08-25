@@ -370,7 +370,7 @@ export default function MovieForm(props) {
                     </div>
 
                     <p className={(feildRequired) ? " bottom-text shake-text" : "bottom-text"}>
-                        <strong>Note: </strong> <span className="required">*</span> marked feilds are required
+                        <strong>Note: </strong> <span className="required">*</span> marked fields are required
                     </p>
                 </form>
 

@@ -15,7 +15,6 @@ export default function SearchBar() {
   useEffect(() => {
     const str = keyword;
     setKeyword(str.toString().replace(/^ +/gm, '')); //this replaces the spaces in beggining with empty string
-    console.log(keyword);
   }, [keyword]);
 
   const isKeyWordValid = () => {

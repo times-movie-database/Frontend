@@ -274,13 +274,13 @@ export default function MovieForm(props) {
                     id,
                     movieDetails,
                     (res) => {
-                        alert('Movie Detail Updated');
+                        alert('Movie Details Updated');
                         setTimeout(() => {
                             window.location.href = `/movie/${id}`;
                         }, 2000);
                     },
                     (error) => {
-                        alert(error);
+                        alert('An error occurred');
                     })
             }
             else {
@@ -288,11 +288,10 @@ export default function MovieForm(props) {
                     movieDetails,
                     (res) => {
                         alert("Movie details saved successfully");
-                        console.log(res.data);
                         handleReset();
                     },
                     (error) => {
-                        alert(`${error}`);
+                        alert('An error occurred');
                     }
                 );
             }

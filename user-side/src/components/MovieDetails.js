@@ -48,7 +48,8 @@ export default function MovieDetails() {
         setRating(false);
       },
       (error) => {
-        alert(error);
+        alert("An error occurred");
+        setRating(false);
         
       }
     );
@@ -80,14 +81,14 @@ export default function MovieDetails() {
       userReview,
       id,
       (response) => {
-        console.log(response.data);
+        
         setReview(false);
         setFeildRequired(false);
         alert("Review Submitted")
       },
       (error) => {
-        console.log(error.response.data);
-        alert(error);
+        alert("An error occurred");
+        setRating(false);
       }
     );
   };
@@ -113,8 +114,8 @@ export default function MovieDetails() {
           </div>
           <div className="genre-items">
                 {movie.genres
-                  ? movie.genres.map((gen) => (
-                      <span className="tagged">{gen.name}</span>
+                  ? movie.genres.map((gen,index) => (
+                      <span className="tagged" key={index}>{gen.name}</span>
                     ))
                   : null}
               </div>
@@ -172,8 +173,8 @@ export default function MovieDetails() {
              <div className="cast-items">
               <span className="cast-title">
                 Cast:</span> {movie.cast
-                  ? movie.cast.map((actor) => (
-                      <span className="tagged ">{actor.name}</span>
+                  ? movie.cast.map((actor,index) => (
+                      <span className="tagged " key={index}>{actor.name}</span>
                     ))
                     : null}
               

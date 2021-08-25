@@ -168,7 +168,7 @@ export default function MovieDetails() {
             </div>
           </div>
           <div className="summary-item">
-          <button className="user-reviews">Summary</button> 
+          <div className="user-reviews" style={{width:'fit-content'}}>Summary</div> 
              <div className="summary-wrap">{movie.summary}</div>
              <div className="cast-items">
               <span className="cast-title">
@@ -227,7 +227,7 @@ export default function MovieDetails() {
               </div>
             </Modal>
           </div>
-          <button className="user-reviews">User Reviews</button>
+          <div className="user-reviews">User Reviews</div>
           </div>
           <div className="review-section">
             <MovieReviews id={id} className="review-section"></MovieReviews>

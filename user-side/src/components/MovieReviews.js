@@ -15,7 +15,7 @@ export default function MovieReviews(props) {
   /*get movie reviews*/
   useEffect(() => {
     getMovieReviews(id, 0, (response) => setMovieReviews(response.data));
-  }, []);
+  }, [id]);
   /*Get movies reviews from next page*/
   const fetchreviewdata = async () => {
     const URL = await axios.get(

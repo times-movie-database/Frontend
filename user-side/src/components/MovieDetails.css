@@ -195,7 +195,7 @@
     font-style: italic;
  }
 .personal-rating {
-    padding-left: 2em;
+    max-width: fit-content;
     text-align: right;
     flex: 3;
 }
@@ -404,4 +404,13 @@
     margin-bottom: 0em;
 }
 
-
+@media (min-width:257px) and (max-width : 310px) {
+    .add{
+        font-size: small;
+    }
+}
+@media screen and (max-width:257px) {
+    .add{
+        font-size: 12px;
+    }
+}

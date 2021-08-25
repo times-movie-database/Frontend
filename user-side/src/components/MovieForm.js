@@ -6,12 +6,14 @@ import { getAllGenre, getMovieDetails, sendMovieToDB, updateMovieInDB } from '..
 import { useParams } from 'react-router-dom';
 
 export default function MovieForm(props) {
-
+    /*initialising character constraints for various inputs*/
     const TITLE_MAX = 100;
     const SUMMARY_MAX = 500;
     const CAST_NAME_MAX = 50;
+    /*creating reference to handle dropdown values*/
     const dropdownSelectInputRef = useRef();
     const [initialGenre, setInitialGenre] = useState([]); //to keep genre data in drop down
+
     //id stores movie id, accessed via parameter of edit url
     const { id } = useParams();
 
@@ -20,7 +22,7 @@ export default function MovieForm(props) {
     /*comma separated cast name in the cast feild state*/
     const [castNameCSV, setCastNameCSV] = useState("");
 
-    /*error states*/
+    /*error states for various feilds*/
     const [titleError, setTitleError] = useState({
         fieldEmpty: true,
         limitExceeds: false
@@ -54,11 +56,12 @@ export default function MovieForm(props) {
     };
     const [movie, setMovie] = useState(initialMovieState);
 
-  /*function to capitalise the first letter in the drop down menu*/
+    /*function to capitalise the first letter in the drop down menu*/
     function capitaliseFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    /*function to convert arrays value into comma separated values*/
     const getCsvFromArray = (array) => {
         let csv = "";
         for (let i = 0; i < array.length - 1; i++) {
@@ -67,15 +70,17 @@ export default function MovieForm(props) {
         csv += array[array.length - 1] + " ";
         return csv;
     }
+
+    /*this function extracts the string after the last comma, (used to validate the lastest cast name inputed by user)*/
     const parseLastNameInCSV = (input) => {
         var n = input.lastIndexOf(',');
         return input.substring(n + 1);
     }
 
 
-    let formHeading; //to keep heading of the form
-    useEffect(() => {
+    let formHeading; //to keep heading of the form (Edit/Add movie)
 
+    useEffect(() => {
         if (props.isEdit) {
             //if the form is edit form, fill it with the movie details
             getMovieDetails(id, (response) => {
@@ -104,13 +109,15 @@ export default function MovieForm(props) {
                     setCastError({ ...castError, consecutiveCommas: false });
                     setCastName(parseLastNameInCSV(castCSV).replace(/^ +/gm, ''));
                 }
+
+                if (movieDetail.summary.length > 0) {
+                    setSummaryError({ ...summaryError, fieldEmpty: false }); //if the movie has summary then set feildEmpty error of summary to false
+                }
                 setCastNameCSV(castCSV);
                 setInitialGenre(movieDetail.genres);
             })
         }
-        else {
 
-        }
     }, []);
 
     //updates the value of dropsown as soon as it detects a change in state of initial genre
@@ -158,10 +165,16 @@ export default function MovieForm(props) {
 
 
 
-    const validateSummary = (summary, value) => {
+    const validateSummary = (summary, text) => {
+        const value=text.toString().replace(/^ +/gm, '');
+        console.log(value.length);
+        if(value.length==0){
+            setSummaryError({ ...summaryError, fieldEmpty: true });
+        }
         if (value.length <= SUMMARY_MAX) {
             setMovie({ ...movie, [summary]: value });
             setSummaryError({ ...summaryError, limitExceeds: false });
+            setSummaryError({ ...summaryError, fieldEmpty: false });
         }
 
         else {
@@ -256,12 +269,13 @@ export default function MovieForm(props) {
         setGenreError({ ...genreError, fieldEmpty: true });
 
     }
+    /*this function handles submit validations and actions*/
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (titleError.fieldEmpty || genreError.fieldEmpty || castNameCSV.length === 0) {
+        if (titleError.fieldEmpty || genreError.fieldEmpty || castNameCSV.length === 0 || movie.summary.length===0) {
             setFeildRequired(true);
         }
-        else {
+        else {  //if no error
             const movieDetails = {
                 title: movie.title,
                 summary: movie.summary,
@@ -318,10 +332,11 @@ export default function MovieForm(props) {
 
                     <div className='form-group'>
                         <label for='summary' name='plot'>
-                            Plot
+                            Plot <span className="required">*</span>
                         </label>
                         <textarea name='summary' id='summary' rows='15' cols='20' placeholder='Enter here' value={movie.summary} className='form-control' onChange={handleFeildChange}></textarea ><br />
                     </div>
+                    {(movie.summary.length===0 && feildRequired) ? <div className='warning shake-text'>Summary cannot be empty</div> : null}
                     {summaryError.limitExceeds ? <div className='warning'>Try to keep summary crisp. Can't be more than 500 characters long. </div> : null}
 
                     <div className='form-group'>

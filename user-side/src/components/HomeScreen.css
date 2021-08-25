@@ -23,6 +23,9 @@
   height: 5vh;
   font-size: larger;
 }
+.card h2,h3,h4{
+  padding: 0em 0.125em;
+}
 @media screen and (max-width: 768px) {
 
   #container1{

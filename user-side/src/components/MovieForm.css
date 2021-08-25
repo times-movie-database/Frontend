@@ -30,14 +30,19 @@
 .movie-form .form-wrap .form-group input,
 .movie-form .form-wrap .form-group textarea{
     width:100%;
-    padding: 0.6em;
+    padding: 0.6em 0.6em 0.52em 0.6em;
     border: #ddd  0.0625em solid;
-    border-radius: 0.3125em;
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
     resize: none;
     font-size: 1.07em;
     font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400;
+    font-weight: 395;
     font-style: normal;
+    color: hsl(0, 0%, 50%);
     letter-spacing: normal;
     text-transform: none;
 }

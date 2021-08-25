@@ -7,11 +7,6 @@ export default function Review(props) {
   const toggleReadmore = () => {
     setReadmore(!Readmore);
   };
-  const hasReadmore=()=>{
-    if(text.length>150)
-    {return true}
-    else{return false} 
-  }
   
   return (
     <div className="review">
@@ -23,7 +18,7 @@ export default function Review(props) {
       <div className="content">
         {Readmore ? text.slice(0,150) : text}
         <span onClick={toggleReadmore} className="read-more">
-          {Readmore ? "...read more" : " Show Less"}
+          {text.length>150?(Readmore ? "...read more" : " Show Less"):(null)}
         </span>
       </div>
     </div>

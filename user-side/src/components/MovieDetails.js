@@ -189,10 +189,11 @@ export default function MovieDetails() {
               isOpen={review}
               onRequestClose={() => setReview(false)}
             >
-              <div className="right-modal">
-                <button className="close-btn" onClick={() => setReview(false)}>
+              <button className="close-btn" onClick={() => setReview(false)}>
                   &times;
                 </button>
+              <div className="right-modal">
+                
               </div>
               <div className="details-title">Add your Review</div>
               <div className="center-textarea">

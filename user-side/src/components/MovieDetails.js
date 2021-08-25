@@ -157,6 +157,8 @@ export default function MovieDetails() {
                   initialRating={userRating}
                   emptySymbol="fa fa-star"
                   fullSymbol="fa fa-star checked"
+                  style={{fontSize:'2em',
+                letterSpacing:'0.25em'}}
                   onChange={(rate) => handleRating(rate)}
                 />
                 <div className="modal-submit">

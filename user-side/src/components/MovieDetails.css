@@ -81,6 +81,9 @@
     text-align: center;
     margin-top: 2em;
 }
+.empty{
+    color:#666666;
+}
 .popup-review textarea{
     width:80%;
     height:30vh;

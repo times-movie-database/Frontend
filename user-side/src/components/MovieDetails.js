@@ -20,7 +20,7 @@ export default function MovieDetails() {
   const [reviewEmpty, setReviewEmpty]=useState(true);
   const [feildRequired, setFeildRequired]=useState(false);
   const [rating, setRating] = useState(false);
-  const [userRating, setUserRating] = useState(1);
+  const [userRating, setUserRating] = useState(5);
   const [userReview, setUserReview] = useState({});
   const [movie, setMovie] = useState({});
   
@@ -155,7 +155,7 @@ export default function MovieDetails() {
                 <Rating
                   className="center-rating"
                   initialRating={userRating}
-                  emptySymbol="fa fa-star"
+                  emptySymbol="fa fa-star empty"
                   fullSymbol="fa fa-star checked"
                   style={{fontSize:'2em',
                 letterSpacing:'0.25em'}}

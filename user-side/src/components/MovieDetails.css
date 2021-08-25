@@ -216,7 +216,7 @@
     font-size: 2em;
     /* color: #00796b; */
     font-size:xx-large;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: bold;
 }
 

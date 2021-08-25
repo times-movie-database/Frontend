@@ -1,42 +1,46 @@
 import "./SearchScreen.css";
-import { useState, useEffect,lazy } from "react";
+import { useState, useEffect} from "react";
 import { searchMovie } from "../Services";
 import { getAllGenre } from '../Services';
 import ErrorBoundary from "./ErrorBoundary";
 import axios from "axios";
 import Loader from "react-loader-spinner";
-import { useLocation, useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header";
 import EmptySearchScreen from "./EmptySearchScreen";
 import Card from './Card'
-export default function SearchScreen(props) {
+export default function SearchScreen() {
   const [pageNumberMovies, setPageNumberMovies] = useState(1);
   const [hasMoreMovies,setHasMoreMovies]=useState(true);
   const [movies, setMovies] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('All');
-  const { searchKeyword } = useParams();
-  const [end,setEnd]=useState(false);
+  const { searchKeyword } = useParams();       
+  
+  //validation for empty search keyword
   const isSearchKeywordEmpty = () => {
-    console.log(searchKeyword.length);
     const regex = /[\s\s+/]/;
     return regex.test(searchKeyword) && searchKeyword.length;
   }
-  /*get genre list from server*/
+  //get genre list from server
   if (genreList.length === 0) {
     getAllGenre().then((res) => {
       setGenreList(res.data)
     }
     )
   }
+  //set the genre selected from the drop down menu
   const handleGenre = (event) => {
     setSelectedGenre(event.target.value);
   }
+
+  //get the list of movies from server
   useEffect(() => {
     searchMovie(searchKeyword, selectedGenre, 0, (response) => setMovies(response.data));
   }, [searchKeyword, selectedGenre]);
 
+  //get the data of movies on page change
   const fetchmoviedata=async ()=>{
     const URL=await axios.get("https://salty-hollows-74392.herokuapp.com/tmdb/movies/search?genre="+selectedGenre+"&pageNumber="+pageNumberMovies+"&title="+searchKeyword);
     return URL.data;
@@ -44,20 +48,19 @@ export default function SearchScreen(props) {
   const fetchMoremovies=async ()=>
   {
     const new_movies=await fetchmoviedata();
-    setMovies([...movies,...new_movies]);
-    console.log(new_movies);
-    if (new_movies.length===0 || new_movies.length<20){
+    setMovies([...movies,...new_movies]);           //concat movie data from new page to the previous results
+    if (new_movies.length===0 || new_movies.length<20){       //set the hasMore property to false if the next page is empty or has fewer than 20 elements
         setHasMoreMovies(false)
       }
       
-      setPageNumberMovies(pageNumberMovies+1) 
+      setPageNumberMovies(pageNumberMovies+1)      //increment page numnber
   }
   
   return (
 
     <div>
       <ErrorBoundary>
-        <Header searchBar="yes" addButton="yes" />
+        <Header searchBar="yes" addButton="yes" />       
       </ErrorBoundary>
 
       {isSearchKeywordEmpty() ? <EmptySearchScreen/> :

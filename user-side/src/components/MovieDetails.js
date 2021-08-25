@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./AddReview.css";
 import Modal from "react-modal";
 import "./MovieDetails.css";
 import Rating from "react-rating";
@@ -12,10 +11,10 @@ import {
   postMovieReview,
   postUserRating,
 } from "../Services";
-import { useLocation, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 Modal.setAppElement("#root");
-export default function MovieDetails(props) {
+export default function MovieDetails() {
   const [loading,setLoading]=useState(false);
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);

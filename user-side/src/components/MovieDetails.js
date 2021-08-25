@@ -202,7 +202,7 @@ export default function MovieDetails() {
               <div className="right-modal">
                 
               </div>
-              <div className="details-title">Add your Review</div>
+              <div className="details-title">Your Review</div>
               <div className="center-textarea">
                 <textarea
                   className="moviedetails"

@@ -20,7 +20,7 @@ export default function SearchScreen(props) {
   const [end,setEnd]=useState(false);
   const isSearchKeywordEmpty = () => {
     console.log(searchKeyword.length);
-    const regex = /[\s\s+/g]/;
+    const regex = /[\s\s+/]/;
     return regex.test(searchKeyword) && searchKeyword.length;
   }
   /*get genre list from server*/

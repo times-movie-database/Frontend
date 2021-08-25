@@ -37,6 +37,14 @@
     margin-bottom: 0.5em;
     /* font-weight: bolder; */
     font-size: large;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 6.2em;
+    margin-left: 4em;
+    border-radius: 0.2em;
+    padding-bottom: 0.3em;
 }
 .modal-submit{
     padding-top: 4em;
@@ -64,11 +72,12 @@
 
 }
 .bold{
+    text-align: center;
     font-weight: bold;
 }
 .rate-this-star{
     /* border:2px solid #2962FF; */
-    padding-right: 1em;
+    text-align: center;
     color:#2962FF;
     font-weight: bold;
     font-size: 1.5em;
@@ -258,9 +267,16 @@
 } */
 
 .personal-review {
+    display: flex;
+    justify-content: center;
     margin: auto auto;
     text-align: center;
     order:2;
+}
+/*for add review button*/
+.personal-review .add{
+     margin-left: 0em;
+     padding-top:0.4em;
 }
 /* ********************************************************************************************************** */
 @media (min-width: 768px) and (max-width: 1120px) {

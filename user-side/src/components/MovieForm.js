@@ -341,7 +341,7 @@ export default function MovieForm(props) {
 
                     <div className='form-group'>
                         <label for='cast' name='cast-csv'>
-                            Casts <span className="required">*</span>
+                            Cast <span className="required">*</span>
                         </label>
                         <input name='cast' id='cast' type='text' placeholder='Enter comma separated names here' value={castNameCSV} onChange={handleFeildChange}></input><br />
                     </div>

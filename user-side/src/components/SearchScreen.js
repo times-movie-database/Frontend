@@ -20,8 +20,8 @@ export default function SearchScreen() {
 
   //validation for empty search keyword
   const isSearchKeywordEmpty = () => {
-    const regex = /[\s\s+/]/;
-    return regex.test(searchKeyword) && searchKeyword.length;
+    const regex = /[^\s]*/; //regex for valid string
+    return !regex.test(searchKeyword) && searchKeyword.length; //returns true if empty string in keyword
   };
   //get genre list from server
   if (genreList.length === 0) {

@@ -25,7 +25,11 @@
 
 }
 .summary-wrap{
-
+    padding: 0.3em;
+        margin-top: 0.5em;
+        padding-right: 	0.8em;
+    background-color: #F7F7F7;
+        border: 1px solid black;
 }
 .add{
     cursor: pointer;
@@ -287,13 +291,7 @@
         order:2;
         margin-bottom: 0;
     }
-    .summary-wrap{
-        padding: 0.3em;
-        margin-top: 0.5em;
-        padding-right: 	0.8em;
-        background-color: #F7F7F7;
-        border: 1px solid black;
-    }
+    
     .average{
         padding:1em;
         padding-right: 0;

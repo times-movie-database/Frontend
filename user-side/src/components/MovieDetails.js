@@ -53,7 +53,7 @@ export default function MovieDetails(props) {
       }
     );
   };
-  let movieRating = movie.rating;
+  let movieRating = movie.rating;        //trucncating the average rating to 1 decimal place
   if (movieRating) {
     movieRating = movieRating.toFixed(1);
   } else {
@@ -65,10 +65,10 @@ export default function MovieDetails(props) {
     const review = event.target.value.replace(/^ +/gm, ''); //the regex replaces intial spaces from the review text. If only spaces are provide, the review variable will be an empty string
     if(review.length >0 ){  
       setUserReview(review);
-      setReviewEmpty(false);
+      setReviewEmpty(false);             //validation for empty user reivew
     }
     else{
-        setReviewEmpty(true);
+        setReviewEmpty(true);          
     }
   };
   const publishReview = () => {
@@ -124,7 +124,7 @@ export default function MovieDetails(props) {
                 readonly={true}
                 fractions={5}
               ></Rating>
-              <span className="average">{movieRating}</span>
+              <span className="average">{movieRating}/5</span>
               <span className="count">({movie.count})</span>
             </div>
 

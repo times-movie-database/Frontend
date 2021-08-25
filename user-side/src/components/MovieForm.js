@@ -168,7 +168,7 @@ export default function MovieForm(props) {
     const validateSummary = (summary, text) => {
         const value=text.toString().replace(/^ +/gm, '');
         console.log(value.length);
-        if(value.length==0){
+        if(value.length===0){
             setSummaryError({ ...summaryError, fieldEmpty: true });
         }
         if (value.length <= SUMMARY_MAX) {

@@ -6,6 +6,7 @@ import Header from "./Header";
 import MovieReviews from "./MovieReviews";
 import ErrorBoundary from "./ErrorBoundary";
 import Loader from "react-loader-spinner";
+import ErrorPage from "./ErrorPage";
 import {
   getMovieDetails,
   postMovieReview,
@@ -16,6 +17,7 @@ import {useParams } from "react-router-dom";
 Modal.setAppElement("#root");
 export default function MovieDetails() {
   const [loading,setLoading]=useState(false);
+  const[errorOccured,setErrorOccured]=useState(false);
   const [review, setReview] = useState(false);
   const [reviewEmpty, setReviewEmpty]=useState(true);
   const [feildRequired, setFeildRequired]=useState(false);
@@ -29,7 +31,14 @@ export default function MovieDetails() {
     window.location.href = `/movie/edit/${id}`;
   };
   useEffect(() => {
-    getMovieDetails(id, (response) => {setMovie(response.data);setLoading(true);});
+    getMovieDetails(id, 
+      (response) => {
+        setMovie(response.data);
+        setLoading(true);
+      console.log(response)},
+      (error)=>{ 
+      setErrorOccured(true);
+      console.log(error)});
     
   }, [id,rating]);
  
@@ -239,7 +248,12 @@ export default function MovieDetails() {
           
         </div>
       </div>
-):(<Loader type="Oval" color="#6D6767" height={80} width={80}  className="loader"/>)}
-          </div>
-  );
+)
+:errorOccured ?<ErrorPage/>
+  :(<Loader type="Oval" color="#6D6767" height={80} width={80}  className="loader"/>)}
+</div>
+);
+
+
+
 }

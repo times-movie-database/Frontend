@@ -9,7 +9,7 @@ export default function ErrorPage(){
       };
     return(
         <div class="article" style={style}>
-            <h3>Oops! Some error creeped.</h3>
+            <h3>Oops! Some error occurred.</h3>
     <p><a href="/">Go to home page</a> .</p>
         </div>
     )

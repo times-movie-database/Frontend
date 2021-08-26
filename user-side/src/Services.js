@@ -25,9 +25,9 @@ export function getAllmovies(successCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/find-all?pageNumber=0"
     axios.get(URL).then(successCB)
 }
-export function getMovieDetails(movie_id,successCB){
+export function getMovieDetails(movie_id,successCB,errorCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id;
-    axios.get(URL).then(successCB)
+    axios.get(URL).then(successCB).catch(errorCB)
 }
 export function getMovieReviews(movie_id,pagenumber,successCB,errorCB){
     const URL="https://salty-hollows-74392.herokuapp.com/tmdb/movies/"+movie_id+"/review?pageNumber="+pagenumber;

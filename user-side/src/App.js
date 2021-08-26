@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import EmptySearchScreen from './components/EmptySearchScreen';
 import MovieDetails from './components/MovieDetails';
+import NoPageFound from './components/NoPageFound';
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
               
             </ErrorBoundary>
           </Route>
-
+          <Route component={NoPageFound} />
         </Switch>
       </div>
     </Router>
